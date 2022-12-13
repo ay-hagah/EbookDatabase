@@ -172,6 +172,7 @@ public class LoginPanel extends javax.swing.JPanel {
         // enable functionality that are exclusive only to admin
         ListViewPanel.adminMode();
         BookPanel.adminMode();
+        BookEditPanel.adminMode();
         
         System.out.println(username + " - "+ password);
     }//GEN-LAST:event_loginButtonActionPerformed
