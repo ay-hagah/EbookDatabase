@@ -49,6 +49,7 @@ public class MasterFrame extends javax.swing.JFrame {
         loginPanel1 = new gui.LoginPanel();
         listViewPanel1 = new gui.ListViewPanel();
         bookPanel1 = new gui.BookPanel();
+        bookViewPanel1 = new gui.BookViewPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,6 +59,7 @@ public class MasterFrame extends javax.swing.JFrame {
         jTabbedPane2.addTab("Login", loginPanel1);
         jTabbedPane2.addTab("List Books", listViewPanel1);
         jTabbedPane2.addTab("Add Book", bookPanel1);
+        jTabbedPane2.addTab("View Book", bookViewPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,6 +80,7 @@ public class MasterFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private gui.BookPanel bookPanel1;
+    private gui.BookViewPanel bookViewPanel1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private gui.ListViewPanel listViewPanel1;
     private gui.LoginPanel loginPanel1;
