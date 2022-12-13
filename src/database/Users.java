@@ -24,8 +24,6 @@ public class Users {
         this.password = password;
     }
     
-    
-    
     public void CreateUsers(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
 //        stmt.executeUpdate("drop table if exists users");
@@ -38,6 +36,10 @@ public class Users {
         Statement stmt = conn.createStatement();
         // AAAAAAAAAAAAAAAAAAAAAAAA
         stmt.executeUpdate("insert into users(username, password) values('"+username+"', '"+password+"')");
+    }
+    
+    public boolean isAdmin() {
+        return username.equals("admin");
     }
     
     // Database code
