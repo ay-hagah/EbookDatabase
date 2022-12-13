@@ -2,7 +2,6 @@
 package app;
 
 import database.Sqlite;
-import database.User;
 import gui.MasterFrame;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -18,20 +17,5 @@ public class Main {
         // initialize frame
         MasterFrame frame = new MasterFrame(conn);
         frame.setVisible(true);
-
-        
-        
-        User user = new User("Hello", "World");
-        
-        user.CreateUsers(conn);
-        user.AddUser(conn);
-        
-        User usr = User.GetUserByUsername(conn, "Hello");
-        
-        System.out.println("id = " + usr.id);
-        System.out.println("username = " + usr.username);
-        System.out.println("password = " + usr.password);
-        
-        System.out.println(System.getProperty("os.name"));
     }
 }
