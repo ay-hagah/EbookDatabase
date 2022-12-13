@@ -5,6 +5,7 @@
 package gui;
 
 import java.awt.Dimension;
+import java.sql.*;
 
 /**
  *
@@ -21,15 +22,19 @@ public class MasterFrame extends javax.swing.JFrame {
     public final int     MIN_WIDTH = 400;
     public final int     MIN_HEIGHT = 400;
     public final String TITLE = "E-Book Store Database";
-
+    public Connection conn;
     
-    public MasterFrame() {
+    public MasterFrame(Connection conn) {
         initComponents();
         setTitle(TITLE);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setMinimumSize(new Dimension(MIN_WIDTH, MIN_HEIGHT));
+        this.conn = conn;
+        
+        // add database connection
+        loginPanel1.setConnection(conn);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

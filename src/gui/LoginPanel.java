@@ -4,7 +4,12 @@
  */
 package gui;
 
+import database.Users;
 import java.awt.Color;
+
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,9 +20,22 @@ public class LoginPanel extends javax.swing.JPanel {
     /**
      * Creates new form LoginPanel
      */
+    
+    public Connection conn;
+    
     public LoginPanel() {
         initComponents();
     }
+    
+    public LoginPanel(Connection conn) {
+        this.conn = conn;
+        initComponents();
+    }
+    
+    public void setConnection(Connection conn) {
+        this.conn = conn;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -122,7 +140,13 @@ public class LoginPanel extends javax.swing.JPanel {
         String username = usernameInput.getText();
         String password = passwordInput.getText();
         
-        // TODO: add customer to the users table
+        Users usr = new Users(username, password);
+        
+        try {
+            usr.AddUser(this.conn);
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         loginStatus.setText("Registered Successfuly");
         loginStatus.setForeground(Color.GREEN);

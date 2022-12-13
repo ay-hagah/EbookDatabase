@@ -10,12 +10,17 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String args[]) throws SQLException, SQLException, SQLException {
-        MasterFrame frame = new MasterFrame();
-        frame.setVisible(true);
         
+        // database connection
         Sqlite sql = new Sqlite();
         Connection conn = sql.Connect("data.db");
-                
+
+        // initialize frame
+        MasterFrame frame = new MasterFrame(conn);
+        frame.setVisible(true);
+
+        
+        
         Users user = new Users("Hello", "World");
         
         user.CreateUsers(conn);

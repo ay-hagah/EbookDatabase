@@ -40,6 +40,7 @@ public class Users {
         stmt.executeUpdate("insert into users(username, password) values('"+username+"', '"+password+"')");
     }
     
+    // Database code
     public static Users GetUserByUsername(Connection conn, String username) throws SQLException {
         Statement stmt = conn.createStatement();
         int id = -1;
