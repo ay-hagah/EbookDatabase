@@ -141,17 +141,17 @@ public class LoginPanel extends javax.swing.JPanel {
         String password = passwordInput.getText();
         
         Users usr = new Users(username, password);
+        int ok;
+        ok = usr.AddUser(this.conn);
         
-        try {
-            usr.AddUser(this.conn);
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginPanel.class.getName()).log(Level.SEVERE, null, ex);
+        if (ok != -1){
+            loginStatus.setText("Registered Successfuly");
+            loginStatus.setForeground(Color.GREEN);
+            accountStatusLabel.setText(username);
+        } else {
+            loginStatus.setText("Error adding user");
+            loginStatus.setForeground(Color.RED);
         }
-        
-        loginStatus.setText("Registered Successfuly");
-        loginStatus.setForeground(Color.GREEN);
-        accountStatusLabel.setText(username);
-
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed

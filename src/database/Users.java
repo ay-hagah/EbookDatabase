@@ -27,15 +27,21 @@ public class Users {
     public void CreateUsers(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
 //        stmt.executeUpdate("drop table if exists users");
-        stmt.executeUpdate("create table if not exists users (id integer primary key, username varchar(32) not null, password varchar(32) not null)");
+        stmt.executeUpdate("create table if not exists users (id integer primary key , username varchar(32) unique not null, password varchar(32) not null)");
         System.out.println("DB: Created table users");
     }
     
     // FIXME: the following code is vulnerable to sql injection
-    public void AddUser(Connection conn) throws SQLException {
-        Statement stmt = conn.createStatement();
-        // AAAAAAAAAAAAAAAAAAAAAAAA
-        stmt.executeUpdate("insert into users(username, password) values('"+username+"', '"+password+"')");
+    public int AddUser(Connection conn) {
+        try {
+            Statement stmt = conn.createStatement();
+            // AAAAAAAAAAAAAAAAAAAAAAAA
+            stmt.executeUpdate("insert into users(username, password) values('"+username+"', '"+password+"')");
+        } catch (SQLException e) {
+            System.err.println(e);
+            return -1;
+        }
+        return 0;
     }
     
     public boolean isAdmin() {
