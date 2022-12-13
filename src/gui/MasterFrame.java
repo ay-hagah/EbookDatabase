@@ -47,14 +47,17 @@ public class MasterFrame extends javax.swing.JFrame {
         jTabbedPane2 = new javax.swing.JTabbedPane();
         welcomePanel1 = new gui.WelcomePanel();
         loginPanel1 = new gui.LoginPanel();
+        listViewPanel1 = new gui.ListViewPanel();
+        bookPanel1 = new gui.BookPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 500));
 
         jTabbedPane2.addTab("Search", welcomePanel1);
 
         loginPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
         jTabbedPane2.addTab("Login", loginPanel1);
+        jTabbedPane2.addTab("List Books", listViewPanel1);
+        jTabbedPane2.addTab("Add Book", bookPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -66,7 +69,7 @@ public class MasterFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -74,7 +77,9 @@ public class MasterFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private gui.BookPanel bookPanel1;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private gui.ListViewPanel listViewPanel1;
     private gui.LoginPanel loginPanel1;
     private gui.WelcomePanel welcomePanel1;
     // End of variables declaration//GEN-END:variables
