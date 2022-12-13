@@ -4,6 +4,7 @@
  */
 package gui;
 
+import database.User;
 import java.awt.Dimension;
 import java.sql.*;
 
@@ -48,8 +49,9 @@ public class MasterFrame extends javax.swing.JFrame {
         welcomePanel1 = new gui.WelcomePanel();
         loginPanel1 = new gui.LoginPanel();
         listViewPanel1 = new gui.ListViewPanel();
-        bookPanel1 = new gui.BookPanel();
         bookViewPanel1 = new gui.BookViewPanel();
+        bookPanel1 = new gui.BookPanel();
+        bookEditPanel1 = new gui.BookEditPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,27 +60,29 @@ public class MasterFrame extends javax.swing.JFrame {
         loginPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
         jTabbedPane2.addTab("Login", loginPanel1);
         jTabbedPane2.addTab("List Books", listViewPanel1);
-        jTabbedPane2.addTab("Add Book", bookPanel1);
         jTabbedPane2.addTab("View Book", bookViewPanel1);
+        jTabbedPane2.addTab("Add Book", bookPanel1);
+        jTabbedPane2.addTab("Edit Book", bookEditPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane2)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 537, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private gui.BookEditPanel bookEditPanel1;
     private gui.BookPanel bookPanel1;
     private gui.BookViewPanel bookViewPanel1;
     private javax.swing.JTabbedPane jTabbedPane2;

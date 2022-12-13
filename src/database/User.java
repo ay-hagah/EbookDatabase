@@ -5,20 +5,22 @@
 package database;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
-public class Users {
+public class User {
     
     public int id;
     public String username;
     public String password;
 
-    public Users(String username, String password) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
     
-    public Users(int id, String username, String password) {
+    public User(int id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -48,8 +50,22 @@ public class Users {
         return username.equals("admin");
     }
     
+    public boolean ValidLogin(Connection conn, User toCheck) {
+        User origin;
+        try {
+            origin = GetUserByUsername(conn, toCheck.username);
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        
+        if (!(toCheck.username.equals(origin.username) && toCheck.password.equals(origin.password)))
+            return false;
+        return true;
+    }
+    
     // Database code
-    public static Users GetUserByUsername(Connection conn, String username) throws SQLException {
+    public static User GetUserByUsername(Connection conn, String username) throws SQLException {
         Statement stmt = conn.createStatement();
         int id = -1;
         String user = null;
@@ -63,7 +79,7 @@ public class Users {
             pass = rs.getString("password");
         }
         
-        Users usr = new Users(id, user, pass);
+        User usr = new User(id, user, pass);
         return usr;
     }
 }

@@ -4,12 +4,10 @@
  */
 package gui;
 
-import database.Users;
+import database.User;
 import java.awt.Color;
 
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -86,7 +84,6 @@ public class LoginPanel extends javax.swing.JPanel {
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(258, 253, 59, -1));
 
         registerButton.setText("Register");
-        registerButton.setBorderPainted(false);
         registerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registerButtonActionPerformed(evt);
@@ -95,7 +92,6 @@ public class LoginPanel extends javax.swing.JPanel {
         add(registerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(258, 291, 146, -1));
 
         loginButton.setText("Login");
-        loginButton.setBorderPainted(false);
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginButtonActionPerformed(evt);
@@ -140,7 +136,7 @@ public class LoginPanel extends javax.swing.JPanel {
         String username = usernameInput.getText();
         String password = passwordInput.getText();
         
-        Users usr = new Users(username, password);
+        User usr = new User(username, password);
         int ok;
         ok = usr.AddUser(this.conn);
         
@@ -158,17 +154,24 @@ public class LoginPanel extends javax.swing.JPanel {
         String username = usernameInput.getText();
         String password = passwordInput.getText();
         
-        // username and password should be read from the database
-        if (username.equals("user") && password.equals("pass")) {
-            loginStatus.setText("Login is successful");
-            loginStatus.setForeground(Color.GREEN);
-            accountStatusLabel.setText(username);
-
-        } else {
+        User user = new User(username, password);
+        
+        if (!(user.ValidLogin(conn, user))) {
             loginStatus.setForeground(Color.red);
             loginStatus.setText("Login is unsuccessful");
+            return;
         }
         
+        loginStatus.setText("Login is successful");
+        loginStatus.setForeground(Color.GREEN);
+        accountStatusLabel.setText(username);
+        
+        ListViewPanel.setUser(new User(username, password));
+        BookPanel.setUser(new User(username, password));        
+        
+        // enable functionality that are exclusive only to admin
+        ListViewPanel.adminMode();
+        BookPanel.adminMode();
         
         System.out.println(username + " - "+ password);
     }//GEN-LAST:event_loginButtonActionPerformed

@@ -4,19 +4,44 @@
  */
 package gui;
 
+import database.User;
+
 /**
  *
  * @author m1cr0xf7
  */
 public class ListViewPanel extends javax.swing.JPanel {
 
+    private static User user;
+    
+    
     /**
      * Creates new form ListViewPanel
      */
     public ListViewPanel() {
         initComponents();
+        
+        setUser(new User("Guest", "guest"));
+        
+        if (!this.user.isAdmin()) {
+            // Disable buttons that are only available for admin
+            // like edit, add, etc...
+            bookEditorButton.setEnabled(false);
+            DeleteButton.setEnabled(false);
+        }
+        
     }
-
+    
+    public static void adminMode() {
+        bookEditorButton.setEnabled(true);
+        DeleteButton.setEnabled(true);
+        
+    }
+    
+    public static void setUser(User usr) {
+        user = usr;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,9 +53,9 @@ public class ListViewPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        DeleteButton = new javax.swing.JButton();
+        bookEditorButton = new javax.swing.JButton();
+        bookViewerButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(800, 500));
 
@@ -81,19 +106,19 @@ public class ListViewPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("Delete Book");
+        DeleteButton.setText("Delete Book");
 
-        jButton2.setText("Send book to book editor");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        bookEditorButton.setText("Send book to book editor");
+        bookEditorButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                bookEditorButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Send book to book viewer");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        bookViewerButton.setText("Send book to book viewer");
+        bookViewerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                bookViewerButtonActionPerformed(evt);
             }
         });
 
@@ -102,15 +127,15 @@ public class ListViewPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jButton3)
+                .addComponent(bookViewerButton)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(bookEditorButton)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(DeleteButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -119,26 +144,26 @@ public class ListViewPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                    .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bookEditorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bookViewerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void bookEditorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookEditorButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_bookEditorButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void bookViewerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookViewerButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_bookViewerButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    public static javax.swing.JButton DeleteButton;
+    public static javax.swing.JButton bookEditorButton;
+    private javax.swing.JButton bookViewerButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
