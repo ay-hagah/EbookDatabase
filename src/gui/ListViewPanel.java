@@ -29,7 +29,7 @@ public class ListViewPanel extends javax.swing.JPanel {
             bookEditorButton.setEnabled(false);
             DeleteButton.setEnabled(false);
         }
-        
+
     }
     
     public static void adminMode() {
@@ -52,14 +52,14 @@ public class ListViewPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        listViewTable = new javax.swing.JTable();
         DeleteButton = new javax.swing.JButton();
         bookEditorButton = new javax.swing.JButton();
         bookViewerButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(800, 500));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        listViewTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -104,7 +104,8 @@ public class ListViewPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        listViewTable.setCellSelectionEnabled(true);
+        jScrollPane1.setViewportView(listViewTable);
 
         DeleteButton.setText("Delete Book");
 
@@ -165,6 +166,6 @@ public class ListViewPanel extends javax.swing.JPanel {
     public static javax.swing.JButton bookEditorButton;
     private javax.swing.JButton bookViewerButton;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable listViewTable;
     // End of variables declaration//GEN-END:variables
 }

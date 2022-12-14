@@ -4,7 +4,6 @@
  */
 package gui;
 
-import database.User;
 import java.awt.Dimension;
 import java.sql.*;
 
@@ -33,7 +32,7 @@ public class MasterFrame extends javax.swing.JFrame {
         this.conn = conn;
         
         // add database connection
-        loginPanel1.setConnection(conn);
+        loginPanel.setConnection(conn);
     }
     
     /**
@@ -46,23 +45,23 @@ public class MasterFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane2 = new javax.swing.JTabbedPane();
-        welcomePanel1 = new gui.WelcomePanel();
-        loginPanel1 = new gui.LoginPanel();
-        listViewPanel1 = new gui.ListViewPanel();
-        bookViewPanel1 = new gui.BookViewPanel();
-        bookPanel1 = new gui.BookPanel();
-        bookEditPanel1 = new gui.BookEditPanel();
+        welcomePanel = new gui.WelcomePanel();
+        loginPanel = new gui.LoginPanel();
+        listViewPanel = new gui.ListViewPanel();
+        bookViewPanel = new gui.BookViewPanel();
+        bookPanel = new gui.BookPanel();
+        bookEditPanel = new gui.BookEditPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTabbedPane2.addTab("Search", welcomePanel1);
+        jTabbedPane2.addTab("Search", welcomePanel);
 
-        loginPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
-        jTabbedPane2.addTab("Login", loginPanel1);
-        jTabbedPane2.addTab("List Books", listViewPanel1);
-        jTabbedPane2.addTab("View Book", bookViewPanel1);
-        jTabbedPane2.addTab("Add Book", bookPanel1);
-        jTabbedPane2.addTab("Edit Book", bookEditPanel1);
+        loginPanel.setPreferredSize(new java.awt.Dimension(800, 500));
+        jTabbedPane2.addTab("Login", loginPanel);
+        jTabbedPane2.addTab("List Books", listViewPanel);
+        jTabbedPane2.addTab("View Book", bookViewPanel);
+        jTabbedPane2.addTab("Add Book", bookPanel);
+        jTabbedPane2.addTab("Edit Book", bookEditPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,12 +81,12 @@ public class MasterFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private gui.BookEditPanel bookEditPanel1;
-    private gui.BookPanel bookPanel1;
-    private gui.BookViewPanel bookViewPanel1;
+    private gui.BookEditPanel bookEditPanel;
+    private gui.BookPanel bookPanel;
+    private gui.BookViewPanel bookViewPanel;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private gui.ListViewPanel listViewPanel1;
-    private gui.LoginPanel loginPanel1;
-    private gui.WelcomePanel welcomePanel1;
+    private gui.ListViewPanel listViewPanel;
+    private gui.LoginPanel loginPanel;
+    private gui.WelcomePanel welcomePanel;
     // End of variables declaration//GEN-END:variables
 }
