@@ -24,7 +24,6 @@ public class User {
     
     public void CreateUsers(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
-//      stmt.executeUpdate("drop table if exists users"); // delete current table if exists
         stmt.executeUpdate("create table if not exists users ("
                         + "   id integer primary key,"
                         + "   username varchar(32) unique not null,"
@@ -61,10 +60,8 @@ public class User {
             return false;
         }
         
-        if (!(toCheck.username.equals(origin.username) 
-                && toCheck.password.equals(origin.password)))
-            return false;
-        return true;
+        return toCheck.username.equals(origin.username) 
+                && toCheck.password.equals(origin.password);
     }
     
     // Database code
