@@ -24,7 +24,7 @@ public class User {
     
     public void CreateUsers(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
-//        stmt.executeUpdate("drop table if exists users");
+//      stmt.executeUpdate("drop table if exists users"); // delete current table if exists
         stmt.executeUpdate("create table if not exists users (id integer primary key , username varchar(32) unique not null, password varchar(32) not null)");
         System.out.println("DB: Created table users");
     }
@@ -33,7 +33,8 @@ public class User {
     public int AddUser(Connection conn) {
         try {
             Statement stmt = conn.createStatement();
-            // AAAAAAAAAAAAAAAAAAAAAAAA
+            // Storing passwords this way is wrong.
+            // passwords must be hashed        
             stmt.executeUpdate("insert into users(username, password) values('"+username+"', '"+password+"')");
         } catch (SQLException e) {
             System.err.println(e);
@@ -55,7 +56,8 @@ public class User {
             return false;
         }
         
-        if (!(toCheck.username.equals(origin.username) && toCheck.password.equals(origin.password)))
+        if (!(toCheck.username.equals(origin.username) 
+                && toCheck.password.equals(origin.password)))
             return false;
         return true;
     }
@@ -74,7 +76,7 @@ public class User {
             user = rs.getString("username");
             pass = rs.getString("password");
         }
-        
+
         User usr = new User(id, user, pass);
         return usr;
     }
