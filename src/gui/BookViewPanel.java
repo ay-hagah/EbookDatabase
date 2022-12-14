@@ -191,15 +191,15 @@ public class BookViewPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField authorDateOfBirth;
-    private javax.swing.JTextField authorFirstName;
-    private javax.swing.JTextField authorLastName;
-    private javax.swing.JTextField bookPageCount;
-    private javax.swing.JTextField bookPrice;
-    private javax.swing.JTextField bookPublisher;
-    private javax.swing.JTextField bookTitle;
-    private javax.swing.JTextField bookType;
-    private javax.swing.JTextField bookYear;
+    public static javax.swing.JTextField authorDateOfBirth;
+    public static javax.swing.JTextField authorFirstName;
+    public static javax.swing.JTextField authorLastName;
+    public static javax.swing.JTextField bookPageCount;
+    public static javax.swing.JTextField bookPrice;
+    public static javax.swing.JTextField bookPublisher;
+    public static javax.swing.JTextField bookTitle;
+    public static javax.swing.JTextField bookType;
+    public static javax.swing.JTextField bookYear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -217,9 +217,9 @@ public class BookViewPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField publisherCity;
-    private javax.swing.JTextField publisherCode;
-    private javax.swing.JTextField publisherName;
-    private javax.swing.JTextField publisherPhone;
+    public static javax.swing.JTextField publisherCity;
+    public static javax.swing.JTextField publisherCode;
+    public static javax.swing.JTextField publisherName;
+    public static javax.swing.JTextField publisherPhone;
     // End of variables declaration//GEN-END:variables
 }
