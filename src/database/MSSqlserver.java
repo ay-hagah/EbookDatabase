@@ -6,14 +6,15 @@ public class MSSqlserver {
 
     public String username;
     public String password;
+    private Connection conn;
 
     public MSSqlserver(String username, String password) {
         this.username = username;
         this.password = password;
+        conn = null;
     }
 
     public Connection Connect() {
-        Connection conn = null;
 
         String url = "jdbc:sqlserver://localhost;databaseName=EbookStore;";
 
@@ -28,5 +29,15 @@ public class MSSqlserver {
         }
         return conn;
     }
+    
+    
+    public void Close() {
+        try {
+            this.conn.close();
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+    }
+    
 
 }
