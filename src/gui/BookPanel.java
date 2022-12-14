@@ -55,13 +55,11 @@ public class BookPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         bookTitle = new javax.swing.JTextField();
         bookType = new javax.swing.JTextField();
         bookPageCount = new javax.swing.JTextField();
         bookPrice = new javax.swing.JTextField();
         bookYear = new javax.swing.JTextField();
-        bookPublisher = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -105,15 +103,11 @@ public class BookPanel extends javax.swing.JPanel {
 
         jLabel6.setText("Year");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
-
-        jLabel7.setText("Publisher");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
         jPanel1.add(bookTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 125, -1));
         jPanel1.add(bookType, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 125, -1));
         jPanel1.add(bookPageCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 125, -1));
         jPanel1.add(bookPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 125, -1));
         jPanel1.add(bookYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 125, -1));
-        jPanel1.add(bookPublisher, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 125, -1));
 
         jLabel8.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel8.setText("Book");
@@ -226,7 +220,6 @@ public class BookPanel extends javax.swing.JPanel {
     private javax.swing.JTextField bookISBN;
     private javax.swing.JTextField bookPageCount;
     private javax.swing.JTextField bookPrice;
-    private javax.swing.JTextField bookPublisher;
     private javax.swing.JTextField bookTitle;
     private javax.swing.JTextField bookType;
     private javax.swing.JTextField bookYear;
@@ -245,7 +238,6 @@ public class BookPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

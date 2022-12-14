@@ -17,6 +17,27 @@ public class BookViewPanel extends javax.swing.JPanel {
         initComponents();
     }
 
+// dont remove    
+//    public static void View(Book book) {
+//        publisherCity.setText(book.publisher.city);
+//        publisherCode.setText(book.publisher.code);
+//        publisherName.setText(book.publisher.name);
+//        publisherPhone.setText(book.publisher.phone);
+    
+    
+    
+//        authorDateOfBirth.setText(book.author.dateofbirth);
+//        authorFirstName.setText(book.author.firstname);
+//        authorLastName.setText(book.author.lastname);
+//        bookISBN.setText(book.isbn);
+//        bookPageCount.setText(book.pagecount);
+//        bookPrice.setText(book.price);
+//        bookTitle.setText(book.title);
+//        bookType.setText(book.type);
+//        bookYear.setText(book.year);
+        
+//    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,13 +53,11 @@ public class BookViewPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         bookTitle = new javax.swing.JTextField();
         bookType = new javax.swing.JTextField();
         bookPageCount = new javax.swing.JTextField();
         bookPrice = new javax.swing.JTextField();
         bookYear = new javax.swing.JTextField();
-        bookPublisher = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -56,6 +75,8 @@ public class BookViewPanel extends javax.swing.JPanel {
         jLabel16 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         publisherPhone = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        bookISBN = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(800, 500));
 
@@ -64,40 +85,34 @@ public class BookViewPanel extends javax.swing.JPanel {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Title");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 60, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
         jLabel2.setText("Type");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 101, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
         jLabel4.setText("Page count");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
         jLabel5.setText("Price");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 183, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
 
         jLabel6.setText("Year");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 224, -1, -1));
-
-        jLabel7.setText("Publisher");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 265, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
 
         bookTitle.setEditable(false);
-        jPanel1.add(bookTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 57, 125, -1));
+        jPanel1.add(bookTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 125, -1));
 
         bookType.setEditable(false);
-        jPanel1.add(bookType, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 98, 125, -1));
+        jPanel1.add(bookType, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 125, -1));
 
         bookPageCount.setEditable(false);
-        jPanel1.add(bookPageCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 139, 125, -1));
+        jPanel1.add(bookPageCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 125, -1));
 
         bookPrice.setEditable(false);
-        jPanel1.add(bookPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 180, 125, -1));
+        jPanel1.add(bookPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 125, -1));
 
         bookYear.setEditable(false);
-        jPanel1.add(bookYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 221, 125, -1));
-
-        bookPublisher.setEditable(false);
-        jPanel1.add(bookPublisher, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 262, 125, -1));
+        jPanel1.add(bookYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 125, -1));
 
         jLabel8.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel8.setText("Book");
@@ -163,21 +178,27 @@ public class BookViewPanel extends javax.swing.JPanel {
         publisherPhone.setEditable(false);
         jPanel1.add(publisherPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 180, 125, -1));
 
+        jLabel3.setText("ISBN");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+
+        bookISBN.setEditable(false);
+        jPanel1.add(bookISBN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 125, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -194,9 +215,9 @@ public class BookViewPanel extends javax.swing.JPanel {
     public static javax.swing.JTextField authorDateOfBirth;
     public static javax.swing.JTextField authorFirstName;
     public static javax.swing.JTextField authorLastName;
+    public static javax.swing.JTextField bookISBN;
     public static javax.swing.JTextField bookPageCount;
     public static javax.swing.JTextField bookPrice;
-    public static javax.swing.JTextField bookPublisher;
     public static javax.swing.JTextField bookTitle;
     public static javax.swing.JTextField bookType;
     public static javax.swing.JTextField bookYear;
@@ -210,10 +231,10 @@ public class BookViewPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
