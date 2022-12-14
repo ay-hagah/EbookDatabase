@@ -25,7 +25,11 @@ public class User {
     public void CreateUsers(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
 //      stmt.executeUpdate("drop table if exists users"); // delete current table if exists
-        stmt.executeUpdate("create table if not exists users (id integer primary key , username varchar(32) unique not null, password varchar(32) not null)");
+        stmt.executeUpdate("create table if not exists users ("
+                        + "   id integer primary key,"
+                        + "   username varchar(32) unique not null,"
+                        + "   password varchar(32) not null"
+                        + ")");
         System.out.println("DB: Created table users");
     }
     
@@ -35,7 +39,8 @@ public class User {
             Statement stmt = conn.createStatement();
             // Storing passwords this way is wrong.
             // passwords must be hashed        
-            stmt.executeUpdate("insert into users(username, password) values('"+username+"', '"+password+"')");
+            stmt.executeUpdate("insert into users(username, password)"
+                    + "values('"+username+"', '"+password+"')");
         } catch (SQLException e) {
             System.err.println(e);
             return -1;
