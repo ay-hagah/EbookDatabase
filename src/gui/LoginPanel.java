@@ -143,7 +143,6 @@ public class LoginPanel extends javax.swing.JPanel {
         if (ok != -1){
             loginStatus.setText("Registered Successfuly");
             loginStatus.setForeground(Color.GREEN);
-            accountStatusLabel.setText(username);
         } else {
             loginStatus.setText("Error adding user");
             loginStatus.setForeground(Color.RED);
