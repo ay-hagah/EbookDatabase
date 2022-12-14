@@ -1,19 +1,28 @@
 
 package app;
 
-import database.Sqlite;
-import database.User;
+import database.*;
 import gui.MasterFrame;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
 
 
 public class Main {
+
+          // required by microsoft sql server database connection
+//        private static final String username = "dbuser";
+//        private static final String password = "dbpass";
+
+    
     public static void main(String args[]) throws SQLException, SQLException, SQLException {
         
-        // database connection
+        // SQLite database connection
         Sqlite sql = new Sqlite();
         Connection conn = sql.Connect("data.db");
+
+
+        // Microsoft SQL Server database connection
+        //MSSqlserver sql = new MSSqlserver(username, password);
+        //Connection conn = sql.Connect();
         
         User user = new User("nothing", "nothing"); // initializing the database with a random user
         
