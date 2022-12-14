@@ -1,0 +1,54 @@
+package bookestore;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
+
+public class Connection {
+    Statement stmt;
+    DefaultTableModel model;
+    ResultSet rs;
+    
+ public static Connection con;
+
+ public static void ConecctToSQl() throws ClassNotFoundException{ // to connect to SQL
+     
+    model = new DefaultTableModel();
+    model.addColumn("id");
+    model.addColumn("isbn");
+    model.addColumn("title");
+    model.addColumn("type");
+    model.addColumn("pages");
+    model.addColumn("price");
+    model.addColumn("year");
+    model.addColumn("publisher");
+    myTable.setModel(model);
+
+ String url = "jdbc:sqlserver://localhost;databaseName=EbookStore;";
+ String username ="elbastawesy";
+ String password ="123321";
+ 
+
+ try{
+
+ con = DriverManager.getConnection(url, username,password);
+ stmt = con.createStatment();
+ rs = stmt.executeQuery("")
+  
+   try{
+     while(rs.next()){
+         model.addRow(new opject{});
+     }
+ }
+ catch ( SQLException e){ 
+     System.out.println(e);
+ }
+ }
+
+ public static void Close () { 
+ try { con.close();
+ } catch (SQLException ex) { System.out.println("ERROR Connection"); }
+ }
+
+}
