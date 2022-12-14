@@ -44,7 +44,7 @@ public class MasterFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane2 = new javax.swing.JTabbedPane();
+        MasterPane = new javax.swing.JTabbedPane();
         welcomePanel = new gui.WelcomePanel();
         loginPanel = new gui.LoginPanel();
         listViewPanel = new gui.ListViewPanel();
@@ -54,14 +54,14 @@ public class MasterFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTabbedPane2.addTab("Search", welcomePanel);
+        MasterPane.addTab("Search", welcomePanel);
 
         loginPanel.setPreferredSize(new java.awt.Dimension(800, 500));
-        jTabbedPane2.addTab("Login", loginPanel);
-        jTabbedPane2.addTab("List Books", listViewPanel);
-        jTabbedPane2.addTab("View Book", bookViewPanel);
-        jTabbedPane2.addTab("Add Book", bookPanel);
-        jTabbedPane2.addTab("Edit Book", bookEditPanel);
+        MasterPane.addTab("Login", loginPanel);
+        MasterPane.addTab("List Books", listViewPanel);
+        MasterPane.addTab("View Book", bookViewPanel);
+        MasterPane.addTab("Add Book", bookPanel);
+        MasterPane.addTab("Edit Book", bookEditPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,22 +69,22 @@ public class MasterFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane2)
+                .addComponent(MasterPane)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 537, Short.MAX_VALUE)
+            .addComponent(MasterPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 537, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTabbedPane MasterPane;
     private gui.BookEditPanel bookEditPanel;
     private gui.BookPanel bookPanel;
     private gui.BookViewPanel bookViewPanel;
-    private javax.swing.JTabbedPane jTabbedPane2;
     private gui.ListViewPanel listViewPanel;
     private gui.LoginPanel loginPanel;
     private gui.WelcomePanel welcomePanel;
