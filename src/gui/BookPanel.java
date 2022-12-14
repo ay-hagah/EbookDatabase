@@ -76,7 +76,6 @@ public class BookPanel extends javax.swing.JPanel {
         publisherCity = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         publisherPhone = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
@@ -160,9 +159,6 @@ public class BookPanel extends javax.swing.JPanel {
         jLabel17.setText("Date of birth");
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, -1, -1));
 
-        jTextField13.setText("jTextField3");
-        jPanel1.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 125, -1));
-
         jLabel18.setText("Phone");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 180, -1, -1));
         jPanel1.add(publisherPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 180, 125, -1));
@@ -185,15 +181,15 @@ public class BookPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -241,7 +237,6 @@ public class BookPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField publisherCity;
     private javax.swing.JTextField publisherCode;
     private javax.swing.JTextField publisherName;
