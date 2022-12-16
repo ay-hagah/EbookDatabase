@@ -24,10 +24,11 @@ public class Main {
         //MSSqlserver sql = new MSSqlserver(username, password);
         //Connection conn = sql.Connect();
         
-        User user = new User("nothing", "nothing"); // initializing the database with a random user
+        // create tables
+        User.CreateUsers(conn);
+        Book.CreateBooks(conn);
         
-        user.CreateUsers(conn);
-
+        
         // initialize frame
         MasterFrame frame = new MasterFrame(conn);
         frame.setVisible(true);

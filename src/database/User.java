@@ -22,7 +22,7 @@ public class User {
         this.password = password;
     }
     
-    public void CreateUsers(Connection conn) throws SQLException {
+    public static void CreateUsers(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
         stmt.executeUpdate("create table if not exists users ("
                         + "   id integer primary key,"
