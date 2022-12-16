@@ -29,10 +29,7 @@ public class ListViewPanel extends javax.swing.JPanel {
             bookEditorButton.setEnabled(false);
             DeleteButton.setEnabled(false);
         }
-        
-        
         model = (DefaultTableModel)listViewTable.getModel();
-
     }
 
     public String getValueAtColumn(int column) {

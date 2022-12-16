@@ -4,7 +4,9 @@
  */
 package gui;
 
+import database.Book;
 import database.User;
+import java.sql.*;
 
 /**
  *
@@ -13,6 +15,11 @@ import database.User;
 public class BookEditPanel extends javax.swing.JPanel {
 
     private static User user;
+    public Connection conn;
+    
+    public void setConnection(Connection conn) {
+        this.conn = conn;
+    }
     
     /**
      * Creates new form ListViewPanel
@@ -210,6 +217,20 @@ public class BookEditPanel extends javax.swing.JPanel {
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         // TODO add your handling code here:
+        String target = targetBook.getText();
+        Book b = new Book(target);
+        
+        Book toEdit = new Book(target,
+                bookTitle.getText(),
+                bookType.getText(),
+                Integer.parseInt(bookPageCount.getText()),
+                Integer.parseInt(bookPrice.getText()),
+                bookYear.getText(),
+                publisherName.getText()
+        );
+        
+        b.UpdateBook(conn, toEdit);
+        
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void publisherCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publisherCodeActionPerformed

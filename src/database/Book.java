@@ -24,6 +24,10 @@ public class Book {
         this.price = price;
     }
 
+    public Book(String isbn) {
+        this.isbn = isbn;
+    }
+
     public static void CreateBooks(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
         stmt.executeUpdate("create table if not exists books ("
