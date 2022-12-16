@@ -1,7 +1,7 @@
 package database;
 
 import java.sql.*;
-z
+
 public class Author {
     
     public int id;
