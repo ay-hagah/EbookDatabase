@@ -4,8 +4,11 @@
  */
 package gui;
 
+import database.Book;
 import database.User;
 import javax.swing.table.DefaultTableModel;
+
+import java.sql.*;
 
 /**
  *
@@ -16,7 +19,15 @@ public class ListViewPanel extends javax.swing.JPanel {
     private static User user;
     public DefaultTableModel model;    
     
-    public static final int ROWS = 9; // 7-1
+    public Connection conn;
+    
+    public Book books[];
+    
+    public void setConnection(Connection conn) {
+        this.conn = conn;
+    }
+    
+    public static final int ROWS = 7; // 8-1
     
     public ListViewPanel() {
         initComponents();
@@ -30,6 +41,22 @@ public class ListViewPanel extends javax.swing.JPanel {
             DeleteButton.setEnabled(false);
         }
         model = (DefaultTableModel)listViewTable.getModel();
+    }
+    
+    public void refreshBooks() {
+        this.books = Book.GetAllBooks(conn);
+        if (books == null) return;
+        
+        for (int i = 0; i < books.length; i++) {
+            if (this.books[i].pagecount == 0) break;
+            setCell(books[i].isbn, i, 0);
+            setCell(books[i].title, i, 1);
+            setCell(books[i].type, i, 2); 
+            setCell(books[i].pagecount, i, 3);
+            setCell(books[i].price, i, 4);
+            setCell(books[i].year, i, 5);
+            setCell(books[i].publisher, i, 6);
+        }
     }
 
     public String getValueAtColumn(int column) {
@@ -68,6 +95,7 @@ public class ListViewPanel extends javax.swing.JPanel {
         DeleteButton = new javax.swing.JButton();
         bookEditorButton = new javax.swing.JButton();
         bookViewerButton = new javax.swing.JButton();
+        RefreshTableButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(800, 500));
 
@@ -144,6 +172,13 @@ public class ListViewPanel extends javax.swing.JPanel {
             }
         });
 
+        RefreshTableButton.setText("Refresh Table");
+        RefreshTableButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RefreshTableButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -158,18 +193,22 @@ public class ListViewPanel extends javax.swing.JPanel {
                 .addComponent(bookEditorButton)
                 .addGap(18, 18, 18)
                 .addComponent(DeleteButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(RefreshTableButton)
+                .addContainerGap(160, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bookEditorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bookViewerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bookEditorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bookViewerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(RefreshTableButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -181,9 +220,15 @@ public class ListViewPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_bookViewerButtonActionPerformed
 
+    private void RefreshTableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshTableButtonActionPerformed
+        // TODO add your handling code here:
+        refreshBooks();
+    }//GEN-LAST:event_RefreshTableButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton DeleteButton;
+    private javax.swing.JButton RefreshTableButton;
     public static javax.swing.JButton bookEditorButton;
     private javax.swing.JButton bookViewerButton;
     private javax.swing.JScrollPane jScrollPane1;

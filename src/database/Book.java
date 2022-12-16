@@ -5,6 +5,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Book {
+    
+    public static final int MAX_BOOKS = 35;
 
     public String isbn;
     public String title;
@@ -27,6 +29,11 @@ public class Book {
     public Book(String isbn) {
         this.isbn = isbn;
     }
+
+    public Book() {
+    }
+    
+    
 
     public static void CreateBooks(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
@@ -92,23 +99,44 @@ public class Book {
         return 0;
     }
 
-    public Book[] GetAllBooks(Connection conn) {
-        Book books[] = null;
+    @Override
+    public String toString() {
+        return isbn + ":" + title + ":" + type + ":" + pagecount + ":" + price + ":" + year + ":" + publisher;
+    }
+    
+    
+
+    public static Book[] GetAllBooks(Connection conn) {
+        Book books[];
+        books = new Book[MAX_BOOKS];
+        
+        for (int i = 0; i < 30; i++) {
+            books[i] = new Book();
+        }
 
         try {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select * from books");
             int i = 0;
             while (rs.next()) {
-                books[i] = new Book(
-                        rs.getString(isbn),
-                        rs.getString(title),
-                        rs.getString(type),
-                        rs.getInt(pagecount),
-                        rs.getInt(price),
-                        rs.getString(year),
-                        rs.getString(publisher)
-                );
+                String isbn = rs.getString("isbn");
+                String title = rs.getString("title");
+                String type = rs.getString("type");
+                int pagecount = rs.getInt("pagecount");
+                int price = rs.getInt("price");
+                String year = rs.getString("year");
+                String publisher = rs.getString("publisher");
+                
+                books[i].isbn = isbn; 
+                books[i].title = title; 
+                books[i].type = type; 
+                books[i].pagecount = pagecount; 
+                books[i].price = price; 
+                books[i].year = year; 
+                books[i].publisher = publisher; 
+                        
+                System.out.println(books[i].toString());
+                
                 i++;
             }
         } catch (SQLException ex) {

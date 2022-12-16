@@ -35,6 +35,7 @@ public class MasterFrame extends javax.swing.JFrame {
         loginPanel.setConnection(conn);
         bookPanel.setConnection(conn);
         bookEditPanel.setConnection(conn);
+        listViewPanel.setConnection(conn);
     }
     
     /**
