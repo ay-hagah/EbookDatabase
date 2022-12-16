@@ -4,7 +4,9 @@
  */
 package gui;
 
+import database.Book;
 import database.User;
+import java.sql.Connection;
 
 /**
  *
@@ -13,6 +15,13 @@ import database.User;
 public class BookPanel extends javax.swing.JPanel {
 
     private static User user;
+    
+    public Connection conn;
+    
+    public void setConnection(Connection conn) {
+        this.conn = conn;
+    }
+    
     
     /**
      * Creates new form ListViewPanel
@@ -203,7 +212,15 @@ public class BookPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_publisherCodeActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // TODO add your handling code here:
+        Book b;
+        b = new Book(bookISBN.getText(),
+                bookTitle.getText(),
+                bookType.getText(), 
+                Integer.parseInt(bookPageCount.getText()), 
+                Integer.parseInt(bookPrice.getText()), 
+                bookYear.getText(), 
+                publisherName.getText());
+        b.AddBook(conn);
     }//GEN-LAST:event_addButtonActionPerformed
 
 

@@ -33,6 +33,7 @@ public class MasterFrame extends javax.swing.JFrame {
         
         // add database connection
         loginPanel.setConnection(conn);
+        bookPanel.setConnection(conn);
     }
     
     /**

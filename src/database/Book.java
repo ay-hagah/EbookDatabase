@@ -10,46 +10,50 @@ public class Book {
     public String title;
     public String type;
     public int pagecount;
+    public int price;
     public String year;
     public String publisher;
 
-    public Book(String isbn, String title, String type, int pagecount, String year, String publisher) {
+    public Book(String isbn, String title, String type, int pagecount, int price, String year, String publisher) {
         this.isbn = isbn;
         this.title = title;
         this.type = type;
         this.pagecount = pagecount;
         this.year = year;
         this.publisher = publisher;
+        this.price = price;
     }
 
     public static void CreateBooks(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
         stmt.executeUpdate("create table if not exists books ("
-                + "   isbn CHAR(13) primary key not null,"
+                + "   isbn varchar(13) primary key not null,"
                 + "   title varchar(32) unique not null,"
                 + "   type varchar(32),"
                 + "   pagecount integer,"
-                + "   type varchar(32),"
+                + "   price integer,"
                 + "   year varchar(32),"
-                + "   publisher varchar(32) not null,"
+                + "   publisher varchar(32) not null"
                 + ")");
-        System.out.println("DB: Created table users");
+        System.out.println("DB: Created table books");
     }
 
     public int AddBook(Connection conn) {
         try {
             Statement stmt = conn.createStatement();
-            stmt.executeUpdate("insert into users"
-                    + "values('"
-                    + isbn + ","
-                    + title + ","
-                    + type + ","
+            stmt.executeUpdate("insert into books(isbn, title, type, pagecount, price, year, publisher)"
+                    + "values("
+                    + "'"+isbn +"'" + ","
+                    + "'"+title +"'" + ","
+                    + "'"+type +"'" + ","
                     + pagecount + ","
-                    + year + ","
-                    + publisher + ","
-                    + "')");
+                    + price + ","
+                    + "'"+year +"'" + ","
+                    + "'"+publisher +"'"
+                    + ")");
         } catch (SQLException e) {
             System.err.println(e);
+            System.err.println(e.getMessage());
             return -1;
         }
         return 0;
@@ -59,12 +63,13 @@ public class Book {
         try {
             Statement stmt = conn.createStatement();
             stmt.executeUpdate("update books"
-                    + "set isbn = " + newBook.isbn + ","
-                    + "title = " + newBook.title + ","
-                    + "type = " + newBook.type + ","
+                    + "set isbn = " + "'" +  newBook.isbn + "'" + ","
+                    + "title = " + "'" + newBook.title + "'" + ","
+                    + "type = " + "'" + newBook.type + "'" + ","
                     + "pagecount = " + newBook.pagecount + ","
-                    + "year = " + newBook.year + ","
-                    + "publisher = " + newBook.publisher);
+                    + "price = " + newBook.price + ","
+                    + "year = " + "'" +  newBook.year + "'" + ","
+                    + "publisher = " + "'" + newBook.publisher + "'");
         } catch (SQLException e) {
             System.err.println(e);
             return -1;
@@ -75,7 +80,7 @@ public class Book {
     public int DeleteBook(Connection conn) {
         try {
             Statement stmt = conn.createStatement();
-            stmt.executeUpdate("delete from books where isbn = " + isbn);
+            stmt.executeUpdate("delete from books where isbn = " + "'" + isbn + "'");
         } catch (SQLException e) {
             System.err.println(e);
             return -1;
@@ -96,11 +101,10 @@ public class Book {
                         rs.getString(title),
                         rs.getString(type),
                         rs.getInt(pagecount),
+                        rs.getInt(price),
                         rs.getString(year),
                         rs.getString(publisher)
                 );
-                System.out.println("name = " + rs.getString("name"));
-                System.out.println("id = " + rs.getInt("id"));
                 i++;
             }
         } catch (SQLException ex) {
