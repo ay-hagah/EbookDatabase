@@ -136,6 +136,7 @@ public class Book {
                 // Get Publisher Info
                 Publisher publisher = new Publisher();
                 publisher.name = rs.getString("publisher");
+                
                 System.out.println("current index" + i);
                 books[i].isbn = isbn;
                 books[i].title = title;
@@ -172,20 +173,22 @@ public class Book {
                 int price = rs.getInt("price");
                 String year = rs.getString("year");
 
-                // Get Publisher Information
-                String publisherName = rs.getString("publisher");
                 // Get Author Information
-                String authorName = rs.getString("author");
-
-
+                Author author = new Author();
+                author.firstname = rs.getString("author");
+                
+                // Get Publisher Info
+                Publisher publisher = new Publisher();
+                publisher.name = rs.getString("publisher");
+                
                 book.isbn = isbn;
                 book.title = title;
                 book.type = type;
                 book.pagecount = pagecount;
                 book.price = price;
                 book.year = year;
-                book.publisher.name = publisherName;
-                book.author.firstname = authorName;
+                book.publisher = publisher;
+                book.author = author;
 
                 System.out.println(book.toString());
 

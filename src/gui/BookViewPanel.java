@@ -31,13 +31,13 @@ public class BookViewPanel extends javax.swing.JPanel {
     public void View(Book book) {
         //publisherCity.setText(book.publisher.city);
         //publisherCode.setText(book.publisher.code);
-        //publisherName.setText(book.publisher.name);
+        publisherName.setText(book.publisher.name);
         //publisherPhone.setText(book.publisher.phone);
     
     
     
         // authorDateOfBirth.setText(book.author.dateofbirth);
-        // authorFirstName.setText(book.author.firstname);
+        authorFirstName.setText(book.author.firstname);
         // authorLastName.setText(book.author.lastname);
         
         bookISBN.setText(book.isbn);
