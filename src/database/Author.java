@@ -5,16 +5,26 @@ import java.sql.*;
 public class Author {
     
     public int id;
-    public int firstname;
-    public int lastname;
+    public String firstname;
+    public String lastname;
     public String dateofbirth;
 
-    public Author(int id, int firstname, int lastname, String dateofbirth) {
+    public Author(int id, String firstname, String lastname, String dateofbirth) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.dateofbirth = dateofbirth;
     }
+    
+    
+    
+    public Author(String firstname, String lastname, String dateofbirth) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.dateofbirth = dateofbirth;
+    }
+    
     
     public static void CreateAuthor(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
@@ -26,6 +36,11 @@ public class Author {
                         + ")");
         System.out.println("DB: Created table authors");
     }
+
+    Author() {}
+    
+    
+    
     
         
     // FIXME: the following code is vulnerable to sql injection

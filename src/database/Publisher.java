@@ -22,6 +22,8 @@ public class Publisher {
         this.phone = phone;
     }
 
+    Publisher() {}
+
  
     
 }

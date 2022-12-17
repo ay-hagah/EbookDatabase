@@ -4,11 +4,9 @@ import database.User;
 import java.awt.Color;
 
 import java.sql.*;
+import java.util.Arrays;
 
-/**
- *
- * @author m1cr0xf7
- */
+
 public class LoginPanel extends javax.swing.JPanel {
 
     /**
@@ -130,7 +128,7 @@ public class LoginPanel extends javax.swing.JPanel {
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
         // TODO add your handling code here:
         String username = usernameInput.getText();
-        String password = passwordInput.getText();
+        String password = Arrays.toString(passwordInput.getPassword());
         
         User usr = new User(username, password);
         int ok;
@@ -147,7 +145,7 @@ public class LoginPanel extends javax.swing.JPanel {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         String username = usernameInput.getText();
-        String password = passwordInput.getText();
+        String password = Arrays.toString(passwordInput.getPassword());
         
         User user = new User(username, password);
         

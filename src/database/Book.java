@@ -5,7 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Book {
-    
+
     public static final int MAX_BOOKS = 35;
 
     public String isbn;
@@ -14,9 +14,12 @@ public class Book {
     public int pagecount;
     public int price;
     public String year;
-    public String publisher;
+    
+    // not yet done
+    public Publisher publisher;
+    public Author author;
 
-    public Book(String isbn, String title, String type, int pagecount, int price, String year, String publisher) {
+    public Book(String isbn, String title, String type, int pagecount, int price, String year, Publisher publisher, Author author) {
         this.isbn = isbn;
         this.title = title;
         this.type = type;
@@ -24,6 +27,7 @@ public class Book {
         this.year = year;
         this.publisher = publisher;
         this.price = price;
+        this.author = author;
     }
 
     public Book(String isbn) {
@@ -32,14 +36,13 @@ public class Book {
 
     public Book() {
     }
-    
-    
 
     public static void CreateBooks(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
         stmt.executeUpdate("create table if not exists books ("
                 + "   isbn varchar(13) primary key not null,"
                 + "   title varchar(32) unique not null,"
+                + "   author varchar(32) not null,"
                 + "   type varchar(32),"
                 + "   pagecount integer,"
                 + "   price integer,"
@@ -52,15 +55,16 @@ public class Book {
     public int AddBook(Connection conn) {
         try {
             Statement stmt = conn.createStatement();
-            stmt.executeUpdate("insert into books(isbn, title, type, pagecount, price, year, publisher)"
+            stmt.executeUpdate("insert into books(isbn, title, author, type, pagecount, price, year, publisher)"
                     + "values("
-                    + "'"+isbn +"'" + ","
-                    + "'"+title +"'" + ","
-                    + "'"+type +"'" + ","
+                    + "'" + isbn + "'" + ","
+                    + "'" + title + "'" + ","
+                    + "'" + author.firstname + "'" + ","
+                    + "'" + type + "'" + ","
                     + pagecount + ","
                     + price + ","
-                    + "'"+year +"'" + ","
-                    + "'"+publisher +"'"
+                    + "'" + year + "'" + ","
+                    + "'" + publisher.name + "'"
                     + ")");
         } catch (SQLException e) {
             System.err.println(e);
@@ -74,13 +78,14 @@ public class Book {
         try {
             Statement stmt = conn.createStatement();
             stmt.executeUpdate("update books"
-                    + "set isbn = " + "'" +  newBook.isbn + "'" + ","
+                    + "set isbn = " + "'" + newBook.isbn + "'" + ","
                     + "title = " + "'" + newBook.title + "'" + ","
+                    + "author = " + "'" + newBook.author.firstname + "'" + ","
                     + "type = " + "'" + newBook.type + "'" + ","
                     + "pagecount = " + newBook.pagecount + ","
                     + "price = " + newBook.price + ","
-                    + "year = " + "'" +  newBook.year + "'" + ","
-                    + "publisher = " + "'" + newBook.publisher + "'");
+                    + "year = " + "'" + newBook.year + "'" + ","
+                    + "publisher = " + "'" + newBook.publisher.name + "'");
         } catch (SQLException e) {
             System.err.println(e);
             return -1;
@@ -101,16 +106,14 @@ public class Book {
 
     @Override
     public String toString() {
-        return isbn + ":" + title + ":" + type + ":" + pagecount + ":" + price + ":" + year + ":" + publisher;
+        return isbn + ":" + title + ":" + author.firstname  + type + ":" + pagecount + ":" + price + ":" + year + ":" + publisher.name;
     }
-    
-    
 
     public static Book[] GetAllBooks(Connection conn) {
         Book books[];
         books = new Book[MAX_BOOKS];
-        
-        for (int i = 0; i < 30; i++) {
+
+        for (int i = 0; i < MAX_BOOKS; i++) {
             books[i] = new Book();
         }
 
@@ -125,18 +128,27 @@ public class Book {
                 int pagecount = rs.getInt("pagecount");
                 int price = rs.getInt("price");
                 String year = rs.getString("year");
-                String publisher = rs.getString("publisher");
                 
-                books[i].isbn = isbn; 
-                books[i].title = title; 
-                books[i].type = type; 
-                books[i].pagecount = pagecount; 
-                books[i].price = price; 
-                books[i].year = year; 
-                books[i].publisher = publisher; 
-                        
+                // Get Author Information
+                Author author = new Author();
+                author.firstname = rs.getString("author");
+                
+                // Get Publisher Info
+                Publisher publisher = new Publisher();
+                publisher.name = rs.getString("publisher");
+                System.out.println("current index" + i);
+                books[i].isbn = isbn;
+                books[i].title = title;
+                books[i].type = type;
+                books[i].pagecount = pagecount;
+                books[i].price = price;
+                books[i].year = year;
+                books[i].publisher = publisher;
+                books[i].author = author;
+
+
                 System.out.println(books[i].toString());
-                
+
                 i++;
             }
         } catch (SQLException ex) {
@@ -144,5 +156,46 @@ public class Book {
         }
         return books;
     }
-}
 
+    public static Book GetBook(Connection conn, String isbn) {
+        Book book;
+        book = new Book(isbn);
+
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from books WHERE isbn = " + book.isbn);
+            int i = 0;
+            while (rs.next()) {
+                String title = rs.getString("title");
+                String type = rs.getString("type");
+                int pagecount = rs.getInt("pagecount");
+                int price = rs.getInt("price");
+                String year = rs.getString("year");
+
+                // Get Publisher Information
+                String publisherName = rs.getString("publisher");
+                // Get Author Information
+                String authorName = rs.getString("author");
+
+
+                book.isbn = isbn;
+                book.title = title;
+                book.type = type;
+                book.pagecount = pagecount;
+                book.price = price;
+                book.year = year;
+                book.publisher.name = publisherName;
+                book.author.firstname = authorName;
+
+                System.out.println(book.toString());
+
+                i++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return book;
+    }
+
+}

@@ -4,6 +4,9 @@
  */
 package gui;
 
+import database.Book;
+import java.sql.*;
+
 /**
  *
  * @author m1cr0xf7
@@ -13,30 +16,38 @@ public class BookViewPanel extends javax.swing.JPanel {
     /**
      * Creates new form ListViewPanel
      */
+    
+    Connection conn;
     public BookViewPanel() {
         initComponents();
+        conn = null;
+    }
+    
+    public void setConnection(Connection conn) {
+        this.conn = conn;
     }
 
 // dont remove    
-//    public static void View(Book book) {
-//        publisherCity.setText(book.publisher.city);
-//        publisherCode.setText(book.publisher.code);
-//        publisherName.setText(book.publisher.name);
-//        publisherPhone.setText(book.publisher.phone);
+    public void View(Book book) {
+        //publisherCity.setText(book.publisher.city);
+        //publisherCode.setText(book.publisher.code);
+        //publisherName.setText(book.publisher.name);
+        //publisherPhone.setText(book.publisher.phone);
     
     
     
-//        authorDateOfBirth.setText(book.author.dateofbirth);
-//        authorFirstName.setText(book.author.firstname);
-//        authorLastName.setText(book.author.lastname);
-//        bookISBN.setText(book.isbn);
-//        bookPageCount.setText(book.pagecount);
-//        bookPrice.setText(book.price);
-//        bookTitle.setText(book.title);
-//        bookType.setText(book.type);
-//        bookYear.setText(book.year);
+        // authorDateOfBirth.setText(book.author.dateofbirth);
+        // authorFirstName.setText(book.author.firstname);
+        // authorLastName.setText(book.author.lastname);
         
-//    }
+        bookISBN.setText(book.isbn);
+        bookPageCount.setText(Integer.toString(book.pagecount));
+        bookPrice.setText(Integer.toString(book.price));
+        bookTitle.setText(book.title);
+        bookType.setText(book.type);
+        bookYear.setText(book.year);
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,6 +88,9 @@ public class BookViewPanel extends javax.swing.JPanel {
         publisherPhone = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         bookISBN = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        isbnToSearch = new javax.swing.JTextField();
+        javax.swing.JButton ViewBookButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(800, 500));
 
@@ -85,47 +99,47 @@ public class BookViewPanel extends javax.swing.JPanel {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Title");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
         jLabel2.setText("Type");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
 
         jLabel4.setText("Page count");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
 
         jLabel5.setText("Price");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
 
         jLabel6.setText("Year");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
 
         bookTitle.setEditable(false);
-        jPanel1.add(bookTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 125, -1));
+        jPanel1.add(bookTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 125, -1));
 
         bookType.setEditable(false);
-        jPanel1.add(bookType, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 125, -1));
+        jPanel1.add(bookType, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 125, -1));
 
         bookPageCount.setEditable(false);
-        jPanel1.add(bookPageCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 125, -1));
+        jPanel1.add(bookPageCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 125, -1));
 
         bookPrice.setEditable(false);
-        jPanel1.add(bookPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 125, -1));
+        jPanel1.add(bookPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 125, -1));
 
         bookYear.setEditable(false);
-        jPanel1.add(bookYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 125, -1));
+        jPanel1.add(bookYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 125, -1));
 
         jLabel8.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel8.setText("Book");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 6, -1, 33));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, 33));
 
         jLabel9.setText("First name");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, -1, -1));
 
         jLabel10.setText("Last name");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, -1, -1));
 
         jLabel11.setText("Date of birth");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, -1, -1));
 
         authorFirstName.setEditable(false);
         authorFirstName.addActionListener(new java.awt.event.ActionListener() {
@@ -133,26 +147,26 @@ public class BookViewPanel extends javax.swing.JPanel {
                 authorFirstNameActionPerformed(evt);
             }
         });
-        jPanel1.add(authorFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 125, -1));
+        jPanel1.add(authorFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 125, -1));
 
         authorLastName.setEditable(false);
-        jPanel1.add(authorLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, 125, -1));
+        jPanel1.add(authorLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 125, -1));
 
         authorDateOfBirth.setEditable(false);
-        jPanel1.add(authorDateOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 125, -1));
+        jPanel1.add(authorDateOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 125, -1));
 
         jLabel15.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel15.setText("Author");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, 33));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, 33));
 
         jLabel12.setText("Code");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, -1, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, -1, -1));
 
         jLabel13.setText("Name");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, -1, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, -1, -1));
 
         jLabel14.setText("City");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, -1, -1));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 230, -1, -1));
 
         publisherCode.setEditable(false);
         publisherCode.addActionListener(new java.awt.event.ActionListener() {
@@ -160,29 +174,48 @@ public class BookViewPanel extends javax.swing.JPanel {
                 publisherCodeActionPerformed(evt);
             }
         });
-        jPanel1.add(publisherCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 125, -1));
+        jPanel1.add(publisherCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 150, 125, -1));
 
         publisherName.setEditable(false);
-        jPanel1.add(publisherName, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 100, 125, -1));
+        jPanel1.add(publisherName, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 190, 125, -1));
 
         publisherCity.setEditable(false);
-        jPanel1.add(publisherCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 140, 125, -1));
+        jPanel1.add(publisherCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 230, 125, -1));
 
         jLabel16.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel16.setText("Publisher");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, 33));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, -1, 33));
 
         jLabel18.setText("Phone");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 180, -1, -1));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 270, -1, -1));
 
         publisherPhone.setEditable(false);
-        jPanel1.add(publisherPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 180, 125, -1));
+        jPanel1.add(publisherPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 270, 125, -1));
 
         jLabel3.setText("ISBN");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
 
         bookISBN.setEditable(false);
-        jPanel1.add(bookISBN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 125, -1));
+        jPanel1.add(bookISBN, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 125, -1));
+
+        jLabel7.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        jLabel7.setText("ISBN");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 60, -1));
+
+        isbnToSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                isbnToSearchActionPerformed(evt);
+            }
+        });
+        jPanel1.add(isbnToSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 180, 30));
+
+        ViewBookButton.setText("View");
+        ViewBookButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewBookButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ViewBookButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -210,6 +243,19 @@ public class BookViewPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_publisherCodeActionPerformed
 
+    private void isbnToSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isbnToSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_isbnToSearchActionPerformed
+
+    private void ViewBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewBookButtonActionPerformed
+        // TODO add your handling code here:
+        String isbn = isbnToSearch.getText();
+        
+        Book book = Book.GetBook(conn, isbn);
+        View(book);
+        
+    }//GEN-LAST:event_ViewBookButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTextField authorDateOfBirth;
@@ -221,6 +267,7 @@ public class BookViewPanel extends javax.swing.JPanel {
     public static javax.swing.JTextField bookTitle;
     public static javax.swing.JTextField bookType;
     public static javax.swing.JTextField bookYear;
+    private javax.swing.JTextField isbnToSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -235,6 +282,7 @@ public class BookViewPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

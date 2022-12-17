@@ -4,7 +4,9 @@
  */
 package gui;
 
+import database.Author;
 import database.Book;
+import database.Publisher;
 import database.User;
 import java.sql.Connection;
 
@@ -213,13 +215,17 @@ public class BookPanel extends javax.swing.JPanel {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         Book b;
+        
+        Author author = new Author(authorFirstName.getText(), authorLastName.getText(), authorDateOfBirth.getText());
+        Publisher publisher = new Publisher(publisherCode.getText(), publisherName.getText(), publisherCity.getText(), publisherPhone.getText());
         b = new Book(bookISBN.getText(),
                 bookTitle.getText(),
                 bookType.getText(), 
                 Integer.parseInt(bookPageCount.getText()), 
                 Integer.parseInt(bookPrice.getText()), 
                 bookYear.getText(), 
-                publisherName.getText());
+                publisher,
+                author);
         b.AddBook(conn);
     }//GEN-LAST:event_addButtonActionPerformed
 

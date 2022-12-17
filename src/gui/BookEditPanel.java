@@ -1,7 +1,9 @@
 
 package gui;
 
+import database.Author;
 import database.Book;
+import database.Publisher;
 import database.User;
 import java.sql.*;
 
@@ -217,13 +219,18 @@ public class BookEditPanel extends javax.swing.JPanel {
         String target = targetBook.getText();
         Book b = new Book(target);
         
+        Author author;
+        author = new Author(authorFirstName.getText(), authorLastName.getText(), authorDateOfBirth.getText());
+        Publisher publisher = new Publisher(publisherCode.getText(), publisherName.getText(), publisherCity.getText(), publisherPhone.getText());
+        
         Book toEdit = new Book(target,
                 bookTitle.getText(),
                 bookType.getText(),
                 Integer.parseInt(bookPageCount.getText()),
                 Integer.parseInt(bookPrice.getText()),
                 bookYear.getText(),
-                publisherName.getText()
+                publisher,
+                author
         );
         
         b.UpdateBook(conn, toEdit);
