@@ -31,6 +31,7 @@ public class BookEditPanel extends javax.swing.JPanel {
         if (!this.user.isAdmin()) {
             // Disable buttons that are only available for admin
             // like edit, add, etc...
+            DeleteBookButton.setEnabled(false);
             editButton.setEnabled(false);
         }
 
@@ -38,6 +39,7 @@ public class BookEditPanel extends javax.swing.JPanel {
     
         
     public static void adminMode() {
+        DeleteBookButton.setEnabled(true);
         editButton.setEnabled(true);
     }
     
@@ -85,10 +87,11 @@ public class BookEditPanel extends javax.swing.JPanel {
         jTextField13 = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         publisherPhone = new javax.swing.JTextField();
-        editButton = new javax.swing.JButton();
+        DeleteBookButton = new javax.swing.JButton();
         StatusMessage = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         targetBook = new javax.swing.JTextField();
+        editButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(800, 500));
 
@@ -173,13 +176,13 @@ public class BookEditPanel extends javax.swing.JPanel {
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 230, -1, -1));
         jPanel1.add(publisherPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 230, 125, -1));
 
-        editButton.setText("Edit Book");
-        editButton.addActionListener(new java.awt.event.ActionListener() {
+        DeleteBookButton.setText("Delete Book");
+        DeleteBookButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editButtonActionPerformed(evt);
+                DeleteBookButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(editButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 140, 60));
+        jPanel1.add(DeleteBookButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 390, 140, 60));
         jPanel1.add(StatusMessage, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 350, 180));
 
         jLabel3.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
@@ -192,6 +195,14 @@ public class BookEditPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(targetBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 200, 30));
+
+        editButton.setText("Edit Book");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(editButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 140, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -214,8 +225,20 @@ public class BookEditPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_targetBookActionPerformed
 
-    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+    private void DeleteBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteBookButtonActionPerformed
+        Book b = new Book(targetBook.getText());
+        b.DeleteBook(conn);
+    }//GEN-LAST:event_DeleteBookButtonActionPerformed
+
+    private void publisherCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publisherCodeActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_publisherCodeActionPerformed
+
+    private void authorFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorFirstNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_authorFirstNameActionPerformed
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         String target = targetBook.getText();
         Book b = new Book(target);
         
@@ -234,19 +257,12 @@ public class BookEditPanel extends javax.swing.JPanel {
         );
         
         b.UpdateBook(conn, toEdit);
-        
+
     }//GEN-LAST:event_editButtonActionPerformed
-
-    private void publisherCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publisherCodeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_publisherCodeActionPerformed
-
-    private void authorFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorFirstNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_authorFirstNameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    static javax.swing.JButton DeleteBookButton;
     private javax.swing.JLabel StatusMessage;
     private javax.swing.JTextField authorDateOfBirth;
     private javax.swing.JTextField authorFirstName;

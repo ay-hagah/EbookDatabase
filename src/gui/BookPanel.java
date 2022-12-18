@@ -73,10 +73,8 @@ public class BookPanel extends javax.swing.JPanel {
         bookYear = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        authorFirstName = new javax.swing.JTextField();
-        authorLastName = new javax.swing.JTextField();
+        authorFullName = new javax.swing.JTextField();
         authorDateOfBirth = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -86,7 +84,6 @@ public class BookPanel extends javax.swing.JPanel {
         publisherName = new javax.swing.JTextField();
         publisherCity = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         publisherPhone = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
@@ -123,23 +120,19 @@ public class BookPanel extends javax.swing.JPanel {
         jLabel8.setText("Book");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 6, -1, 33));
 
-        jLabel9.setText("First name");
+        jLabel9.setText("Full name");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, -1, -1));
 
-        jLabel10.setText("Last name");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, -1, -1));
-
         jLabel11.setText("Date of birth");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, -1, -1));
 
-        authorFirstName.addActionListener(new java.awt.event.ActionListener() {
+        authorFullName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                authorFirstNameActionPerformed(evt);
+                authorFullNameActionPerformed(evt);
             }
         });
-        jPanel1.add(authorFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 125, -1));
-        jPanel1.add(authorLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, 125, -1));
-        jPanel1.add(authorDateOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 125, -1));
+        jPanel1.add(authorFullName, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 125, -1));
+        jPanel1.add(authorDateOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, 125, -1));
 
         jLabel15.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel15.setText("Author");
@@ -166,9 +159,6 @@ public class BookPanel extends javax.swing.JPanel {
         jLabel16.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel16.setText("Publisher");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, 33));
-
-        jLabel17.setText("Date of birth");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, -1, -1));
 
         jLabel18.setText("Phone");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 180, -1, -1));
@@ -205,18 +195,20 @@ public class BookPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void authorFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorFirstNameActionPerformed
+    private void authorFullNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorFullNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_authorFirstNameActionPerformed
+    }//GEN-LAST:event_authorFullNameActionPerformed
 
     private void publisherCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publisherCodeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_publisherCodeActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        // hahahhahahahahahah
         Book b;
-        
-        Author author = new Author(authorFirstName.getText(), authorLastName.getText(), authorDateOfBirth.getText());
+        Author author = new Author();
+        author.SetFirstNameAndLastNameByExtractingFullName(authorFullName.getText());
+        author.setDateOfBirth(authorDateOfBirth.getText());
         Publisher publisher = new Publisher(publisherCode.getText(), publisherName.getText(), publisherCity.getText(), publisherPhone.getText());
         b = new Book(bookISBN.getText(),
                 bookTitle.getText(),
@@ -234,8 +226,7 @@ public class BookPanel extends javax.swing.JPanel {
     private javax.swing.JLabel StatusMessage;
     public static javax.swing.JButton addButton;
     private javax.swing.JTextField authorDateOfBirth;
-    private javax.swing.JTextField authorFirstName;
-    private javax.swing.JTextField authorLastName;
+    private javax.swing.JTextField authorFullName;
     private javax.swing.JTextField bookISBN;
     private javax.swing.JTextField bookPageCount;
     private javax.swing.JTextField bookPrice;
@@ -243,14 +234,12 @@ public class BookPanel extends javax.swing.JPanel {
     private javax.swing.JTextField bookType;
     private javax.swing.JTextField bookYear;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -33,12 +33,6 @@ public class ListViewPanel extends javax.swing.JPanel {
         initComponents();
         
         setUser(new User("Guest", "guest"));
-        
-        if (!this.user.isAdmin()) {
-            // Disable buttons that are only available for admin
-            // like edit, add, etc...
-            DeleteButton.setEnabled(false);
-        }
         model = (DefaultTableModel)listViewTable.getModel();
     }
     
@@ -75,12 +69,6 @@ public class ListViewPanel extends javax.swing.JPanel {
         model.setValueAt(value, row, col);
     }
     
-    
-    public static void adminMode() {
-        DeleteButton.setEnabled(true);
-        
-    }
-    
     public static void setUser(User usr) {
         user = usr;
     }
@@ -91,7 +79,6 @@ public class ListViewPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         listViewTable = new javax.swing.JTable();
-        DeleteButton = new javax.swing.JButton();
         RefreshTableButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(800, 500));
@@ -156,8 +143,6 @@ public class ListViewPanel extends javax.swing.JPanel {
             listViewTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        DeleteButton.setText("Delete Book");
-
         RefreshTableButton.setText("Refresh Table");
         RefreshTableButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,20 +158,16 @@ public class ListViewPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addComponent(RefreshTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(DeleteButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(DeleteButton)
-                    .addComponent(RefreshTableButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(RefreshTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(32, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -198,7 +179,6 @@ public class ListViewPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JButton DeleteButton;
     private javax.swing.JButton RefreshTableButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable listViewTable;

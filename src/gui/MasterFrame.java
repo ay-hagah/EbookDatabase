@@ -49,7 +49,6 @@ public class MasterFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         MasterPane = new javax.swing.JTabbedPane();
-        welcomePanel = new gui.WelcomePanel();
         loginPanel = new gui.LoginPanel();
         listViewPanel = new gui.ListViewPanel();
         bookViewPanel = new gui.BookViewPanel();
@@ -57,8 +56,6 @@ public class MasterFrame extends javax.swing.JFrame {
         bookEditPanel = new gui.BookEditPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        MasterPane.addTab("Search", welcomePanel);
 
         loginPanel.setPreferredSize(new java.awt.Dimension(800, 500));
         MasterPane.addTab("Login", loginPanel);
@@ -91,6 +88,5 @@ public class MasterFrame extends javax.swing.JFrame {
     private gui.BookViewPanel bookViewPanel;
     private gui.ListViewPanel listViewPanel;
     private gui.LoginPanel loginPanel;
-    private gui.WelcomePanel welcomePanel;
     // End of variables declaration//GEN-END:variables
 }

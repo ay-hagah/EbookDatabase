@@ -42,7 +42,7 @@ public class Book {
         stmt.executeUpdate("create table if not exists books ("
                 + "   isbn varchar(13) primary key not null,"
                 + "   title varchar(32) unique not null,"
-                + "   author varchar(32) not null,"
+                + "   author integer not null,"
                 + "   type varchar(32),"
                 + "   pagecount integer,"
                 + "   price integer,"
@@ -59,13 +59,17 @@ public class Book {
                     + "values("
                     + "'" + isbn + "'" + ","
                     + "'" + title + "'" + ","
-                    + "'" + author.firstname + "'" + ","
+                    + "'" + author.id + "'" + ","
                     + "'" + type + "'" + ","
                     + pagecount + ","
                     + price + ","
                     + "'" + year + "'" + ","
-                    + "'" + publisher.name + "'"
+                    + "'" + publisher.code + "'"
                     + ")");
+            if (publisher.AddPublisher(conn) != 0)
+                System.err.println("Something went wrong adding publisher");
+            if (author.AddAuthor(conn) != 0)
+                System.err.println("Something went wrong adding author");
         } catch (SQLException e) {
             System.err.println(e);
             System.err.println(e.getMessage());
@@ -80,12 +84,12 @@ public class Book {
             stmt.executeUpdate("update books"
                     + "set isbn = " + "'" + newBook.isbn + "'" + ","
                     + "title = " + "'" + newBook.title + "'" + ","
-                    + "author = " + "'" + newBook.author.firstname + "'" + ","
+                    + "author = " + "'" + newBook.author.id + "'" + ","
                     + "type = " + "'" + newBook.type + "'" + ","
                     + "pagecount = " + newBook.pagecount + ","
                     + "price = " + newBook.price + ","
                     + "year = " + "'" + newBook.year + "'" + ","
-                    + "publisher = " + "'" + newBook.publisher.name + "'");
+                    + "publisher = " + "'" + newBook.publisher.code + "'");
         } catch (SQLException e) {
             System.err.println(e);
             return -1;
@@ -106,7 +110,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return isbn + ":" + title + ":" + author.firstname  + type + ":" + pagecount + ":" + price + ":" + year + ":" + publisher.name;
+        return isbn + ":" + title + ":" + author.firstname+" "+author.lastname  +":"+ type + ":" + pagecount + ":" + price + ":" + year + ":" + publisher.code;
     }
 
     public static Book[] GetAllBooks(Connection conn) {
@@ -129,15 +133,13 @@ public class Book {
                 int price = rs.getInt("price");
                 String year = rs.getString("year");
                 
-                // Get Author Information
-                Author author = new Author();
-                author.firstname = rs.getString("author");
+                Author author = new Author(rs.getString("author"));
+                System.out.println("Getting Author");
+                author.GetAuthor(conn);
+                Publisher publisher = new Publisher(rs.getString("publisher"));
+                System.out.println("Getting Publishers");
+                publisher.GetPublisher(conn);
                 
-                // Get Publisher Info
-                Publisher publisher = new Publisher();
-                publisher.name = rs.getString("publisher");
-                
-                System.out.println("current index" + i);
                 books[i].isbn = isbn;
                 books[i].title = title;
                 books[i].type = type;
@@ -175,11 +177,13 @@ public class Book {
 
                 // Get Author Information
                 Author author = new Author();
-                author.firstname = rs.getString("author");
+                author.id = rs.getString("author");
+                author.GetAuthor(conn);
                 
                 // Get Publisher Info
                 Publisher publisher = new Publisher();
-                publisher.name = rs.getString("publisher");
+                publisher.code = rs.getString("publisher");
+                publisher.GetPublisher(conn);
                 
                 book.isbn = isbn;
                 book.title = title;

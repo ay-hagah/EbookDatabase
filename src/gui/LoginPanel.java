@@ -164,7 +164,6 @@ public class LoginPanel extends javax.swing.JPanel {
         
         // enable functionality that are exclusive only to admin
         if (user.isAdmin()) {
-            ListViewPanel.adminMode();
             BookPanel.adminMode();
             BookEditPanel.adminMode();
         }

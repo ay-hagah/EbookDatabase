@@ -27,7 +27,8 @@ public class Main {
         // create tables
         User.CreateUsers(conn);
         Book.CreateBooks(conn);
-        
+        Author.CreateAuthor(conn);
+        Publisher.CreatePublisher(conn);
         
         // initialize frame
         MasterFrame frame = new MasterFrame(conn);
