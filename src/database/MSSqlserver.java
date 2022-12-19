@@ -16,7 +16,7 @@ public class MSSqlserver {
     private void setDataSource(String username, String password, String port, String databaseName) {
         this.ds.setUser(username);
         this.ds.setPassword(password);
-        this.ds.setDatabaseName(DATBASE_NAME);
+        this.ds.setDatabaseName(databaseName);
         this.ds.setPortNumber(Integer.parseInt(port));
 
     }
@@ -35,9 +35,6 @@ public class MSSqlserver {
     }
 
     public Connection Connect() {
-
-        String url = "jdbc:sqlserver://localhost;databaseName=EbookStore;";
-
         try {
             conn = ds.getConnection();
         } catch (SQLException e) {
