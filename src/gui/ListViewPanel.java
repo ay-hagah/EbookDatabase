@@ -17,40 +17,58 @@ import java.sql.*;
 public class ListViewPanel extends javax.swing.JPanel {
 
     private static User user;
-    public DefaultTableModel model;    
-    
+    public DefaultTableModel model;
+
     public Connection conn;
-    
+
     public Book books[];
-    
+
     public void setConnection(Connection conn) {
         this.conn = conn;
     }
-    
+
     public static final int ROWS = 7; // 8-1
-    
+
     public ListViewPanel() {
         initComponents();
-        
+
         setUser(new User("Guest", "guest"));
-        model = (DefaultTableModel)listViewTable.getModel();
+        model = (DefaultTableModel) listViewTable.getModel();
     }
-    
+
+    public void ReDraw() {
+        for (int i = 0; i < Book.MAX_BOOKS; i++) {
+            if ("".equals(getCell(i, 0))) break;
+            setCell("", i, 0);
+            setCell("", i, 1);
+            setCell("", i, 2);
+            setCell("", i, 3);
+            setCell("", i, 4);
+            setCell("", i, 5);
+            setCell("", i, 6);
+            setCell("", i, 7);
+        }
+    }
+
     public void refreshBooks() {
         this.books = Book.GetAllBooks(conn);
-        if (books == null) return;
-        
+        ReDraw();
+
         for (int i = 0; i < books.length; i++) {
-            if (this.books[i].pagecount == 0) break;
+            if (this.books[i].pagecount == 0) {
+                break;
+            }
             setCell(books[i].isbn, i, 0);
             setCell(books[i].title, i, 1);
-            setCell(books[i].author.firstname, i, 2);
-            setCell(books[i].type, i, 3); 
+            setCell(books[i].author.firstname + " " + books[i].author.lastname, i, 2);
+            setCell(books[i].type, i, 3);
             setCell(books[i].pagecount, i, 4);
             setCell(books[i].price, i, 5);
             setCell(books[i].year, i, 6);
             setCell(books[i].publisher.name, i, 7);
         }
+        Book.ReDraw(this.books);
+
     }
 
     public String getValueAtColumn(int column) {
@@ -59,20 +77,28 @@ public class ListViewPanel extends javax.swing.JPanel {
         return value;
     }
 
-    public void setCell(String value, int row, int col)
-    {
+    public void setCell(String value, int row, int col) {
         model.setValueAt(value, row, col);
     }
-    
-    public void setCell(int value, int row, int col)
-    {
-        model.setValueAt(value, row, col);
+
+    public void setCell(int value, int row, int col) {
+        model.setValueAt(String.valueOf(value), row, col);
     }
-    
+
+    public String getCell(int row, int col) {
+        String ret = "";
+        try {
+            ret = model
+                    .getValueAt(row, col)
+                    .toString();
+        } catch (Exception e) {}
+        return ret;
+    }
+
     public static void setUser(User usr) {
         user = usr;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -114,6 +140,11 @@ public class ListViewPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
@@ -121,7 +152,7 @@ public class ListViewPanel extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false
@@ -139,9 +170,6 @@ public class ListViewPanel extends javax.swing.JPanel {
         listViewTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(listViewTable);
         listViewTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        if (listViewTable.getColumnModel().getColumnCount() > 0) {
-            listViewTable.getColumnModel().getColumn(2).setResizable(false);
-        }
 
         RefreshTableButton.setText("Refresh Table");
         RefreshTableButton.addActionListener(new java.awt.event.ActionListener() {
@@ -175,6 +203,7 @@ public class ListViewPanel extends javax.swing.JPanel {
     private void RefreshTableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshTableButtonActionPerformed
         // TODO add your handling code here:
         refreshBooks();
+        Book.ReDraw(books);
     }//GEN-LAST:event_RefreshTableButtonActionPerformed
 
 

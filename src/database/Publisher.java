@@ -21,7 +21,7 @@ public class Publisher {
     }
 
     public Publisher() {}
-    public Publisher(String name) {this.name = name;}
+    public Publisher(String code) {this.code = code;}
 
     public static void CreatePublisher(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
@@ -73,8 +73,10 @@ public class Publisher {
             ResultSet rs = stmt.executeQuery("select * from publishers WHERE code = " + this.code);
             while (rs.next()) {
                 String name = rs.getString("name");
+                String code = rs.getString("code");
                 String city = rs.getString("city");
                 String phone = rs.getString("phone");
+                this.code = code;
                 this.name = name;
                 this.city = city;
                 this.phone = phone;

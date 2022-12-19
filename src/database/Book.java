@@ -110,16 +110,29 @@ public class Book {
 
     @Override
     public String toString() {
-        return isbn + ":" + title + ":" + author.firstname+" "+author.lastname  +":"+ type + ":" + pagecount + ":" + price + ":" + year + ":" + publisher.code;
+        return isbn + ":"
+                + title + ":"
+                + author.firstname+" "+author.lastname  + ":" 
+                + type + ":" 
+                + pagecount + ":" 
+                + price + ":" 
+                + year + ":" 
+                + publisher.code + ":" 
+                + publisher.name + ":"
+                + publisher.city + ":"
+                + publisher.phone;
+    }
+    
+    public static void ReDraw(Book[] b) {
+        for (int i = 0; i < MAX_BOOKS; i++) {
+            b[i] = new Book();
+        }
     }
 
     public static Book[] GetAllBooks(Connection conn) {
         Book books[];
         books = new Book[MAX_BOOKS];
-
-        for (int i = 0; i < MAX_BOOKS; i++) {
-            books[i] = new Book();
-        }
+        ReDraw(books);
 
         try {
             Statement stmt = conn.createStatement();

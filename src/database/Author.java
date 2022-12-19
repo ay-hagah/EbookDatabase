@@ -86,6 +86,7 @@ public class Author {
     }
 
     public Author() {
+        this.id = GenerateRandomId(13);
     }
 
     public Author(String firstname) {
