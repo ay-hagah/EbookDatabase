@@ -1,4 +1,3 @@
-
 package gui;
 
 import database.Author;
@@ -15,19 +14,19 @@ public class BookEditPanel extends javax.swing.JPanel {
 
     private static User user;
     public Connection conn;
-    
+
     public void setConnection(Connection conn) {
         this.conn = conn;
     }
-    
+
     /**
      * Creates new form ListViewPanel
      */
     public BookEditPanel() {
         initComponents();
-        
+
         setUser(new User("Guest", "guest"));
-        
+
         if (!this.user.isAdmin()) {
             // Disable buttons that are only available for admin
             // like edit, add, etc...
@@ -36,14 +35,12 @@ public class BookEditPanel extends javax.swing.JPanel {
         }
 
     }
-    
-        
+
     public static void adminMode() {
         DeleteBookButton.setEnabled(true);
         editButton.setEnabled(true);
     }
-    
-    
+
     public static void setUser(User usr) {
         user = usr;
     }
@@ -241,11 +238,11 @@ public class BookEditPanel extends javax.swing.JPanel {
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         String target = targetBook.getText();
         Book b = new Book(target);
-        
+
         Author author;
         author = new Author(authorFirstName.getText(), authorLastName.getText(), authorDateOfBirth.getText());
         Publisher publisher = new Publisher(publisherCode.getText(), publisherName.getText(), publisherCity.getText(), publisherPhone.getText());
-        
+
         Book toEdit = new Book(target,
                 bookTitle.getText(),
                 bookType.getText(),
@@ -255,11 +252,10 @@ public class BookEditPanel extends javax.swing.JPanel {
                 publisher,
                 author
         );
-        
+
         b.UpdateBook(conn, toEdit);
 
     }//GEN-LAST:event_editButtonActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     static javax.swing.JButton DeleteBookButton;

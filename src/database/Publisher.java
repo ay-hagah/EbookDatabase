@@ -1,4 +1,3 @@
-
 package database;
 
 import java.sql.Connection;
@@ -7,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Publisher {
-    
+
     public String code;
     public String name;
     public String city;
@@ -20,17 +19,21 @@ public class Publisher {
         this.phone = phone;
     }
 
-    public Publisher() {}
-    public Publisher(String code) {this.code = code;}
+    public Publisher() {
+    }
+
+    public Publisher(String code) {
+        this.code = code;
+    }
 
     public static void CreatePublisher(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
         stmt.executeUpdate("create table if not exists publishers ("
-                        + "   code varchar(10) primary key unique,"
-                        + "   name varchar(32),"
-                        + "   city varchar(32),"
-                        + "   phone varchar(32)"
-                        + ")");
+                + "   code varchar(10) primary key unique,"
+                + "   name varchar(32),"
+                + "   city varchar(32),"
+                + "   phone varchar(32)"
+                + ")");
         System.out.println("DB: Created table publishers");
     }
 
@@ -39,10 +42,10 @@ public class Publisher {
             Statement stmt = conn.createStatement();
             stmt.executeUpdate("insert into publishers(code, name, city, phone) "
                     + " values("
-                    + "     '"+code +"'" + ","
-                    + "     '"+name +"'" + ","
-                    + "     '"+city +"'" + ","
-                    + "     '"+phone +"'"
+                    + "     '" + code + "'" + ","
+                    + "     '" + name + "'" + ","
+                    + "     '" + city + "'" + ","
+                    + "     '" + phone + "'"
                     + ")");
         } catch (SQLException e) {
             System.err.println(e);
@@ -50,7 +53,7 @@ public class Publisher {
         }
         return 0;
     }
-    
+
     public int UpdatePublisher(Connection conn, Publisher newPub) {
         try {
             Statement stmt = conn.createStatement();
@@ -65,7 +68,7 @@ public class Publisher {
         }
         return 0;
     }
-    
+
     public void GetPublisher(Connection conn) {
         System.out.println("Getting Publishers");
         try {
@@ -86,5 +89,4 @@ public class Publisher {
         }
     }
 
-    
 }

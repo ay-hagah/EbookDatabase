@@ -6,28 +6,25 @@ import java.awt.Color;
 import java.sql.*;
 import java.util.Arrays;
 
-
 public class LoginPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form LoginPanel
      */
-    
     public Connection conn;
-    
+
     public LoginPanel() {
         initComponents();
     }
-    
+
     public LoginPanel(Connection conn) {
         this.conn = conn;
         initComponents();
     }
-    
+
     public void setConnection(Connection conn) {
         this.conn = conn;
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -129,12 +126,12 @@ public class LoginPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String username = usernameInput.getText();
         String password = Arrays.toString(passwordInput.getPassword());
-        
+
         User usr = new User(username, password);
         int ok;
         ok = usr.AddUser(this.conn);
-        
-        if (ok != -1){
+
+        if (ok != -1) {
             loginStatus.setText("Registered Successfuly");
             loginStatus.setForeground(Color.GREEN);
         } else {
@@ -146,31 +143,30 @@ public class LoginPanel extends javax.swing.JPanel {
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         String username = usernameInput.getText();
         String password = Arrays.toString(passwordInput.getPassword());
-        
+
         User user = new User(username, password);
-        
+
         if (!(user.ValidLogin(conn, user))) {
             loginStatus.setForeground(Color.red);
             loginStatus.setText("Login is unsuccessful");
             return;
         }
-        
+
         loginStatus.setText("Login is successful");
         loginStatus.setForeground(Color.GREEN);
         accountStatusLabel.setText(username);
-        
+
         ListViewPanel.setUser(new User(username, password));
-        BookPanel.setUser(new User(username, password));        
-        
+        BookPanel.setUser(new User(username, password));
+
         // enable functionality that are exclusive only to admin
         if (user.isAdmin()) {
             BookPanel.adminMode();
             BookEditPanel.adminMode();
         }
 
-        System.out.println(username + " - "+ password);
+        System.out.println(username + " - " + password);
     }//GEN-LAST:event_loginButtonActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accountLabel;

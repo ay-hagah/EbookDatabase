@@ -17,22 +17,21 @@ import java.sql.Connection;
 public class BookPanel extends javax.swing.JPanel {
 
     private static User user;
-    
+
     public Connection conn;
-    
+
     public void setConnection(Connection conn) {
         this.conn = conn;
     }
-    
-    
+
     /**
      * Creates new form ListViewPanel
      */
     public BookPanel() {
         initComponents();
-        
+
         setUser(new User("Guest", "guest"));
-        
+
         if (!this.user.isAdmin()) {
             // Disable buttons that are only available for admin
             // like edit, add, etc...
@@ -40,13 +39,11 @@ public class BookPanel extends javax.swing.JPanel {
         }
 
     }
-    
-        
+
     public static void adminMode() {
         addButton.setEnabled(true);
     }
-    
-    
+
     public static void setUser(User usr) {
         user = usr;
     }
@@ -209,18 +206,20 @@ public class BookPanel extends javax.swing.JPanel {
         Author author = new Author();
         author.SetFirstNameAndLastNameByExtractingFullName(authorFullName.getText());
         author.setDateOfBirth(authorDateOfBirth.getText());
-        Publisher publisher = new Publisher(publisherCode.getText(), publisherName.getText(), publisherCity.getText(), publisherPhone.getText());
+        Publisher publisher = new Publisher(publisherCode.getText(),
+                publisherName.getText(),
+                publisherCity.getText(),
+                publisherPhone.getText());
         b = new Book(bookISBN.getText(),
                 bookTitle.getText(),
-                bookType.getText(), 
-                Integer.parseInt(bookPageCount.getText()), 
-                Integer.parseInt(bookPrice.getText()), 
-                bookYear.getText(), 
+                bookType.getText(),
+                Integer.parseInt(bookPageCount.getText()),
+                Integer.parseInt(bookPrice.getText()),
+                bookYear.getText(),
                 publisher,
                 author);
         b.AddBook(conn);
     }//GEN-LAST:event_addButtonActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel StatusMessage;

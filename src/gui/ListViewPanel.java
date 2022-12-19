@@ -38,7 +38,9 @@ public class ListViewPanel extends javax.swing.JPanel {
 
     public void ReDraw() {
         for (int i = 0; i < Book.MAX_BOOKS; i++) {
-            if ("".equals(getCell(i, 0))) break;
+            if ("".equals(getCell(i, 0))) {
+                break;
+            }
             setCell("", i, 0);
             setCell("", i, 1);
             setCell("", i, 2);
@@ -91,7 +93,8 @@ public class ListViewPanel extends javax.swing.JPanel {
             ret = model
                     .getValueAt(row, col)
                     .toString();
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
         return ret;
     }
 
@@ -205,7 +208,6 @@ public class ListViewPanel extends javax.swing.JPanel {
         refreshBooks();
         Book.ReDraw(books);
     }//GEN-LAST:event_RefreshTableButtonActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton RefreshTableButton;

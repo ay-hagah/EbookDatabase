@@ -14,7 +14,7 @@ public class Book {
     public int pagecount;
     public int price;
     public String year;
-    
+
     // not yet done
     public Publisher publisher;
     public Author author;
@@ -66,10 +66,12 @@ public class Book {
                     + "'" + year + "'" + ","
                     + "'" + publisher.code + "'"
                     + ")");
-            if (publisher.AddPublisher(conn) != 0)
+            if (publisher.AddPublisher(conn) != 0) {
                 System.err.println("Something went wrong adding publisher");
-            if (author.AddAuthor(conn) != 0)
+            }
+            if (author.AddAuthor(conn) != 0) {
                 System.err.println("Something went wrong adding author");
+            }
         } catch (SQLException e) {
             System.err.println(e);
             System.err.println(e.getMessage());
@@ -112,17 +114,17 @@ public class Book {
     public String toString() {
         return isbn + ":"
                 + title + ":"
-                + author.firstname+" "+author.lastname  + ":" 
-                + type + ":" 
-                + pagecount + ":" 
-                + price + ":" 
-                + year + ":" 
-                + publisher.code + ":" 
+                + author.firstname + " " + author.lastname + ":"
+                + type + ":"
+                + pagecount + ":"
+                + price + ":"
+                + year + ":"
+                + publisher.code + ":"
                 + publisher.name + ":"
                 + publisher.city + ":"
                 + publisher.phone;
     }
-    
+
     public static void ReDraw(Book[] b) {
         for (int i = 0; i < MAX_BOOKS; i++) {
             b[i] = new Book();
@@ -145,14 +147,14 @@ public class Book {
                 int pagecount = rs.getInt("pagecount");
                 int price = rs.getInt("price");
                 String year = rs.getString("year");
-                
+
                 Author author = new Author(rs.getString("author"));
                 System.out.println("Getting Author");
                 author.GetAuthor(conn);
                 Publisher publisher = new Publisher(rs.getString("publisher"));
                 System.out.println("Getting Publishers");
                 publisher.GetPublisher(conn);
-                
+
                 books[i].isbn = isbn;
                 books[i].title = title;
                 books[i].type = type;
@@ -161,7 +163,6 @@ public class Book {
                 books[i].year = year;
                 books[i].publisher = publisher;
                 books[i].author = author;
-
 
                 System.out.println(books[i].toString());
 
@@ -192,12 +193,12 @@ public class Book {
                 Author author = new Author();
                 author.id = rs.getString("author");
                 author.GetAuthor(conn);
-                
+
                 // Get Publisher Info
                 Publisher publisher = new Publisher();
                 publisher.code = rs.getString("publisher");
                 publisher.GetPublisher(conn);
-                
+
                 book.isbn = isbn;
                 book.title = title;
                 book.type = type;

@@ -16,21 +16,20 @@ public class MasterFrame extends javax.swing.JFrame {
     /**
      * Creates new form MasterFrame
      */
-    
-    public final int     WIDTH = 800;
-    public final int     HEIGHT = 500;
-    public final int     MIN_WIDTH = 400;
-    public final int     MIN_HEIGHT = 400;
+    public final int WIDTH = 800;
+    public final int HEIGHT = 500;
+    public final int MIN_WIDTH = 400;
+    public final int MIN_HEIGHT = 400;
     public final String TITLE = "E-Book Store Database";
     public Connection conn;
-    
+
     public MasterFrame(Connection conn) {
         initComponents();
         setTitle(TITLE);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setMinimumSize(new Dimension(MIN_WIDTH, MIN_HEIGHT));
         this.conn = conn;
-        
+
         // add database connection
         loginPanel.setConnection(conn);
         bookPanel.setConnection(conn);
@@ -38,7 +37,7 @@ public class MasterFrame extends javax.swing.JFrame {
         listViewPanel.setConnection(conn);
         bookViewPanel.setConnection(conn);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

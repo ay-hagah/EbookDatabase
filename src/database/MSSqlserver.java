@@ -29,8 +29,7 @@ public class MSSqlserver {
         }
         return conn;
     }
-    
-    
+
     public void Close() {
         try {
             this.conn.close();
@@ -38,6 +37,5 @@ public class MSSqlserver {
             System.err.println(ex);
         }
     }
-    
 
 }

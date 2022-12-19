@@ -16,13 +16,13 @@ public class BookViewPanel extends javax.swing.JPanel {
     /**
      * Creates new form ListViewPanel
      */
-    
     Connection conn;
+
     public BookViewPanel() {
         initComponents();
         conn = null;
     }
-    
+
     public void setConnection(Connection conn) {
         this.conn = conn;
     }
@@ -32,7 +32,7 @@ public class BookViewPanel extends javax.swing.JPanel {
         System.out.println(book.publisher.city);
         System.out.println(book.publisher.code);
         System.out.println(book.publisher.name);
-        
+
         publisherCity.setText(book.publisher.city);
         publisherCode.setText(book.publisher.code);
         publisherName.setText(book.publisher.name);
@@ -49,7 +49,7 @@ public class BookViewPanel extends javax.swing.JPanel {
         bookTitle.setText(book.title);
         bookType.setText(book.type);
         bookYear.setText(book.year);
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -248,14 +248,12 @@ public class BookViewPanel extends javax.swing.JPanel {
     private void ViewBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewBookButtonActionPerformed
         // TODO add your handling code here:
         String isbn = isbnToSearch.getText();
-        
-        Book book = Book.GetBook(conn, isbn);
-        
-        
-        View(book);
-        
-    }//GEN-LAST:event_ViewBookButtonActionPerformed
 
+        Book book = Book.GetBook(conn, isbn);
+
+        View(book);
+
+    }//GEN-LAST:event_ViewBookButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTextField authorDateOfBirth;
