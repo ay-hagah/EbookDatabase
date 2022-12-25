@@ -12,6 +12,13 @@ public class Publisher {
     public String city;
     public String phone;
 
+    public Publisher(String name, String city, String phone) {
+        this.code = Author.GenerateRandomId(12);
+        this.name = name;
+        this.city = city;
+        this.phone = phone;
+    }
+    
     public Publisher(String code, String name, String city, String phone) {
         this.code = code;
         this.name = name;
@@ -20,6 +27,7 @@ public class Publisher {
     }
 
     public Publisher() {
+        this.code = Author.GenerateRandomId(12);
     }
 
     public Publisher(String code) {
@@ -57,11 +65,12 @@ public class Publisher {
     public int UpdatePublisher(Connection conn, Publisher newPub) {
         try {
             Statement stmt = conn.createStatement();
+            System.out.println("Updating publisher of code" + this.code);
             stmt.executeUpdate("update publishers"
-                    + "     set code = " + "'" + newPub.code + "'" + ","
-                    + "     name = " + "'" + newPub.name + "'" + ","
+                    + "     set name = " + "'" + newPub.name + "'" + ","
                     + "     city = " + "'" + newPub.city + "'" + ","
-                    + "     phone = " + "'" + newPub.phone + "'");
+                    + "     phone = " + "'" + newPub.phone + "'"
+                    + "  where code = '" + this.code + "'");
         } catch (SQLException e) {
             System.err.println(e);
             return -1;

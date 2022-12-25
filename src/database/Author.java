@@ -9,7 +9,7 @@ public class Author {
     public String lastname;
     public String dateofbirth;
 
-    private String GenerateRandomId(int n) {
+    public static String GenerateRandomId(int n) {
         // chose a Character random from this String
         String AlphaNumericString = "0123456789";
 
@@ -32,7 +32,7 @@ public class Author {
         return sb.toString();
 
     }
-
+    
     public Author(String id, String firstname, String lastname, String dateofbirth) {
         this.id = id;
         this.firstname = firstname;
@@ -48,7 +48,7 @@ public class Author {
             this.lastname = "";
             return;
         }
-
+        if (fullname[1] == null) fullname[1] = "";
         this.firstname = fullname[0];
         this.lastname = fullname[1];
     }
@@ -60,13 +60,21 @@ public class Author {
         this.dateofbirth = dateofbirth;
     }
 
+    
     public int UpdateAuthors(Connection conn, Author newAut) {
+        System.out.println("New Authorzzz: "
+                + newAut.dateofbirth
+                + " " + newAut.firstname
+                + " " + newAut.lastname
+                + " " + newAut.id);
         try {
             Statement stmt = conn.createStatement();
+            System.out.println("Updating author of " + this.id);
             stmt.executeUpdate("update authors"
-                    + "     set firstname = " + "'" + newAut.firstname + "'" + ","
-                    + "     lastname = " + "'" + newAut.lastname + "'" + ","
-                    + "     dateofbirth = " + "'" + newAut.dateofbirth + "'");
+                    + "     set firstname=" + "'" + newAut.firstname + "'" + ","
+                    + "     lastname=" + "'" + newAut.lastname + "'" + ","
+                    + "     dateofbirth=" + "'" + newAut.dateofbirth + "'"
+                    + "  where id='" + this.id + "'");
         } catch (SQLException e) {
             System.err.println(e);
             return -1;
@@ -89,8 +97,8 @@ public class Author {
         this.id = GenerateRandomId(13);
     }
 
-    public Author(String firstname) {
-        this.firstname = firstname;
+    public Author(String id) {
+        this.id = id;
     }
 
     public void GetAuthor(Connection conn) {
@@ -100,6 +108,7 @@ public class Author {
             ResultSet rs = stmt.executeQuery("select * from authors"
                     + " WHERE id = '" + this.id + "'");
             while (rs.next()) {
+                String id = rs.getString("id");
                 String firstname = rs.getString("firstname");
                 String lastname = rs.getString("lastname");
                 String dateofbirth = rs.getString("dateofbirth");
@@ -107,6 +116,7 @@ public class Author {
                 this.firstname = firstname;
                 this.lastname = lastname;
                 this.dateofbirth = dateofbirth;
+                this.id = id;
             }
         } catch (SQLException ex) {
             System.err.println(ex);
@@ -116,6 +126,8 @@ public class Author {
     // FIXME: the following code is vulnerable to sql injection
     public int AddAuthor(Connection conn) {
         System.out.println("Adding author");
+        // generating a new id
+        // id = GenerateRandomId(13);
         try {
             Statement stmt = conn.createStatement();
             stmt.executeUpdate("insert into authors(id, firstname, lastname, dateofbirth) "

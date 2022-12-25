@@ -81,17 +81,23 @@ public class Book {
     }
 
     public int UpdateBook(Connection conn, Book newBook) {
+        Book outdated = GetBook(conn, isbn);
+        
         try {
             Statement stmt = conn.createStatement();
+            // update book
             stmt.executeUpdate("update books"
-                    + "set isbn = " + "'" + newBook.isbn + "'" + ","
-                    + "title = " + "'" + newBook.title + "'" + ","
-                    + "author = " + "'" + newBook.author.id + "'" + ","
-                    + "type = " + "'" + newBook.type + "'" + ","
-                    + "pagecount = " + newBook.pagecount + ","
-                    + "price = " + newBook.price + ","
-                    + "year = " + "'" + newBook.year + "'" + ","
-                    + "publisher = " + "'" + newBook.publisher.code + "'");
+                    + "     set isbn = " + "'" + newBook.isbn + "'" + ","
+                    + "     title = " + "'" + newBook.title + "'" + ","
+                    + "     author = " + "'" + newBook.author.id + "'" + ","
+                    + "     type = " + "'" + newBook.type + "'" + ","
+                    + "     pagecount = " + newBook.pagecount + ","
+                    + "     price = " + newBook.price + ","
+                    + "     year = " + "'" + newBook.year + "'" + ","
+                    + "     publisher = " + "'" + newBook.publisher.code + "'"
+                    + "  where isbn = '" + outdated.isbn + "'");
+            outdated.publisher.UpdatePublisher(conn, newBook.publisher);
+            outdated.author.UpdateAuthors(conn, newBook.author);
         } catch (SQLException e) {
             System.err.println(e);
             return -1;
@@ -147,12 +153,11 @@ public class Book {
                 int pagecount = rs.getInt("pagecount");
                 int price = rs.getInt("price");
                 String year = rs.getString("year");
-
-                Author author = new Author(rs.getString("author"));
-                System.out.println("Getting Author");
+                Author author = new Author();
+                author.id = rs.getString("author");
                 author.GetAuthor(conn);
-                Publisher publisher = new Publisher(rs.getString("publisher"));
-                System.out.println("Getting Publishers");
+                Publisher publisher = new Publisher();
+                publisher.code = rs.getString("publisher");
                 publisher.GetPublisher(conn);
 
                 books[i].isbn = isbn;
@@ -165,7 +170,6 @@ public class Book {
                 books[i].author = author;
 
                 System.out.println(books[i].toString());
-
                 i++;
             }
         } catch (SQLException ex) {
@@ -180,7 +184,7 @@ public class Book {
 
         try {
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from books WHERE isbn = " + book.isbn);
+            ResultSet rs = stmt.executeQuery("select * from books WHERE isbn = '" + book.isbn + "'");
             int i = 0;
             while (rs.next()) {
                 String title = rs.getString("title");
@@ -193,6 +197,7 @@ public class Book {
                 Author author = new Author();
                 author.id = rs.getString("author");
                 author.GetAuthor(conn);
+                System.out.println("Author ID!!!");
 
                 // Get Publisher Info
                 Publisher publisher = new Publisher();

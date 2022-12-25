@@ -43,6 +43,7 @@ public class BookViewPanel extends javax.swing.JPanel {
         authorDateOfBirth.setText(book.author.dateofbirth);
         authorFirstName.setText(book.author.firstname);
         authorLastName.setText(book.author.lastname);
+        authorIDField.setText(book.author.id);
         bookISBN.setText(book.isbn);
         bookPageCount.setText(Integer.toString(book.pagecount));
         bookPrice.setText(Integer.toString(book.price));
@@ -89,6 +90,8 @@ public class BookViewPanel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         isbnToSearch = new javax.swing.JTextField();
         javax.swing.JButton ViewBookButton = new javax.swing.JButton();
+        authorIDField = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(800, 500));
 
@@ -131,13 +134,13 @@ public class BookViewPanel extends javax.swing.JPanel {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, 33));
 
         jLabel9.setText("First name");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, -1, -1));
 
         jLabel10.setText("Last name");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, -1, -1));
 
         jLabel11.setText("Date of birth");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, -1, -1));
 
         authorFirstName.setEditable(false);
         authorFirstName.addActionListener(new java.awt.event.ActionListener() {
@@ -145,13 +148,13 @@ public class BookViewPanel extends javax.swing.JPanel {
                 authorFirstNameActionPerformed(evt);
             }
         });
-        jPanel1.add(authorFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 125, -1));
+        jPanel1.add(authorFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 125, -1));
 
         authorLastName.setEditable(false);
-        jPanel1.add(authorLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 125, -1));
+        jPanel1.add(authorLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 125, -1));
 
         authorDateOfBirth.setEditable(false);
-        jPanel1.add(authorDateOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 125, -1));
+        jPanel1.add(authorDateOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 270, 125, -1));
 
         jLabel15.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jLabel15.setText("Author");
@@ -215,6 +218,17 @@ public class BookViewPanel extends javax.swing.JPanel {
         });
         jPanel1.add(ViewBookButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, 30));
 
+        authorIDField.setEditable(false);
+        authorIDField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                authorIDFieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(authorIDField, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 125, -1));
+
+        jLabel17.setText("ID");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -255,9 +269,14 @@ public class BookViewPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_ViewBookButtonActionPerformed
 
+    private void authorIDFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorIDFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_authorIDFieldActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTextField authorDateOfBirth;
     public static javax.swing.JTextField authorFirstName;
+    public static javax.swing.JTextField authorIDField;
     public static javax.swing.JTextField authorLastName;
     public static javax.swing.JTextField bookISBN;
     public static javax.swing.JTextField bookPageCount;
@@ -274,6 +293,7 @@ public class BookViewPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
